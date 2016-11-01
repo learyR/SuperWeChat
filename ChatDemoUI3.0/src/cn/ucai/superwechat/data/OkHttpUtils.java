@@ -1,4 +1,4 @@
-package cn.ucai.superwechat.utils;
+package cn.ucai.superwechat.data;
 
 import android.content.Context;
 import android.os.Handler;
