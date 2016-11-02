@@ -5,23 +5,13 @@
     android:background="#eff2f6"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1" >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:src="@drawable/em_welcom_logo" />
-    </RelativeLayout>
+    <include layout="@layout/common_head"/>
 
     <RelativeLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1" >
+        android:layout_height="wrap_content"
+         >
 
         <RelativeLayout
             android:id="@+id/rl_username"
@@ -95,6 +85,7 @@
             android:orientation="horizontal" >
 
             <Button
+                android:id="@+id/btnRegister"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
@@ -110,6 +101,7 @@
                 android:textSize="18sp" />
 
             <Button
+                android:id="@+id/btn_Login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
@@ -125,5 +117,15 @@
                 android:textSize="18sp" />
         </LinearLayout>
     </RelativeLayout>
+    <TextView
+        android:id="@+id/tvProblem"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="登录遇到问题?"
+        android:gravity="right"
+        android:layout_marginRight="38dp"
+        android:textColor="@color/green"
+        />
 
 </LinearLayout>
