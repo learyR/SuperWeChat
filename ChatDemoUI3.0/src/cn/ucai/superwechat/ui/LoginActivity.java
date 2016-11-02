@@ -82,6 +82,7 @@ public class LoginActivity extends BaseActivity {
             autoLogin = true;
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
 
+
             return;
         }
         setContentView(R.layout.em_activity_login);
@@ -121,7 +122,6 @@ public class LoginActivity extends BaseActivity {
             }
         });
     }
-
     /**
      * login
      *
