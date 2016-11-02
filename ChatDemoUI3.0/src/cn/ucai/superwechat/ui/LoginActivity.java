@@ -243,6 +243,8 @@ public class LoginActivity extends BaseActivity {
                     } else {
                         pd.dismiss();
                     }
+                } else {
+                    pd.dismiss();
                 }
             }
 
@@ -261,6 +263,7 @@ public class LoginActivity extends BaseActivity {
         if (autoLogin) {
             return;
         }
+
     }
 
     @OnClick({R.id.img_back, R.id.btnRegister, R.id.btn_Login})
@@ -276,5 +279,11 @@ public class LoginActivity extends BaseActivity {
                 login();
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        pd.dismiss();
     }
 }

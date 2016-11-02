@@ -148,12 +148,12 @@
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_16dp.png"
     },
     {
-        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\img_splach.jpg",
-        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\res\\drawable-xhdpi\\img_splach.jpg"
-    },
-    {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_list_focused_holo.9.png",
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\drawable-xhdpi-v4\\abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\img_splach.jpg",
+        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\res\\drawable-xhdpi\\img_splach.jpg"
     },
     {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\abc_list_pressed_holo_light.9.png",

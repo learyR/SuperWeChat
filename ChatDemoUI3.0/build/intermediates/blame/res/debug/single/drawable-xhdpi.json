@@ -276,12 +276,12 @@
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\res\\drawable-xhdpi\\w10.png"
     },
     {
-        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\w13.png",
-        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\res\\drawable-xhdpi\\w13.png"
-    },
-    {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\w15.png",
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\res\\drawable-xhdpi\\w15.png"
+    },
+    {
+        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\w13.png",
+        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\res\\drawable-xhdpi\\w13.png"
     },
     {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\em_video_recorder_stop_btn.png",

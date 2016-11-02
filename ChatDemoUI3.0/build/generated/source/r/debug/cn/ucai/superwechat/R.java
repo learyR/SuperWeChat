@@ -4777,6 +4777,8 @@ containing a value of this type.
         public static final int GridPasswordView_Divider=0x7f0a00d7;
         public static final int GridPasswordView_EditText=0x7f0a00d8;
         public static final int GridPasswordView_TextView=0x7f0a00d9;
+        /**  模糊 
+         */
         public static final int HeadScale=0x7f0a00da;
         public static final int LoadingProgressStyle=0x7f0a00db;
         public static final int MMFontTitleInList=0x7f0a00dc;
@@ -4784,7 +4786,11 @@ containing a value of this type.
         public static final int MMListItem=0x7f0a00de;
         public static final int MyAlertDialog=0x7f0a00df;
         public static final int MyDialogStyle=0x7f0a00e0;
+        /**  模糊 
+         */
         public static final int MyDialogStyleBottom=0x7f0a00e1;
+        /**  模糊 
+         */
         public static final int MyDialogStyleTop=0x7f0a00e2;
         public static final int PayTypeIconStyle=0x7f0a00e3;
         public static final int Platform_AppCompat=0x7f0a0018;
