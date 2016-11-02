@@ -172,7 +172,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "login: onSuccess");
-                loginSuccess();
+                loginAppServes();
             }
 
             @Override
@@ -228,7 +228,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onSuccess(String str) {
                 L.e(TAG, "str"+str);
-
+                loginSuccess();
             }
 
             @Override
