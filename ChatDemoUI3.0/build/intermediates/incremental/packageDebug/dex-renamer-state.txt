@@ -1,4 +1,4 @@
-#Wed Nov 02 13:37:47 CST 2016
+#Wed Nov 02 15:45:08 CST 2016
 base.0=D\:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
 renamed.0=classes.dex
 file.0=D\:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
