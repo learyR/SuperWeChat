@@ -109,7 +109,7 @@ public class UserDao {
     	SuperWeChatDBManager.getInstance().saveRobotList(robotList);
     }
 
-	public boolean saveUser(User user) {
+	/*public boolean saveUser(User user) {
 		return SuperWeChatDBManager.getInstance().saveUser(user);
 	}
 
@@ -120,7 +120,7 @@ public class UserDao {
 	public boolean updateUser(User user) {
 		return SuperWeChatDBManager.getInstance().updateUser(user);
 	}
-
+*/
 	public void saveAppContact(User user) {
 		SuperWeChatDBManager.getInstance().saveAppContact(user);
 	}

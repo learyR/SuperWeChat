@@ -92,7 +92,6 @@ public class SuperWeChatHelper {
 	private UserProfileManager userProManager;
 
 	private static SuperWeChatHelper instance = null;
-    private User CurrentUser;
     private Map<String, User> appContactList;
     private SuperWeChatModel demoModel = null;
 	
@@ -1263,7 +1262,7 @@ public class SuperWeChatHelper {
         easeUI.popActivity(activity);
     }
 
-    public User getCurrentUser() {
+  /*  public User getCurrentUser() {
         if (CurrentUser == null) {
             String userName = EMClient.getInstance().getCurrentUser();
             L.e(TAG, "currentUser" + userName);
@@ -1275,7 +1274,7 @@ public class SuperWeChatHelper {
     public void setCurrentUser(User currentUser) {
         this.CurrentUser = currentUser;
     }
-
+*/
 
     /**
      * update contact list
@@ -1305,7 +1304,7 @@ public class SuperWeChatHelper {
      * @return
      */
     public Map<String, User> getAppContactList() {
-        if (isLoggedIn() && appContactList == null) {
+        if (isLoggedIn() && appContactList == null||appContactList.size()==0) {
             appContactList = demoModel.getAppContactList();
         }
 

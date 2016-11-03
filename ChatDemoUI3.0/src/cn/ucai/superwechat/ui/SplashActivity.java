@@ -7,6 +7,8 @@ import android.os.Bundle;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.domain.User;
 
+import java.util.Map;
+
 import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.db.UserDao;
@@ -48,10 +50,11 @@ public class SplashActivity extends BaseActivity {
 					EMClient.getInstance().groupManager().loadAllGroups();
 					EMClient.getInstance().chatManager().loadAllConversations();
 
-					UserDao dao = new UserDao(mContext);
+				/*	UserDao dao = new UserDao(mContext);
+					dao.getAppContactList();
 					User user = dao.getUser(EMClient.getInstance().getCurrentUser());
 					L.e(TAG, "user" + user);
-					SuperWeChatHelper.getInstance().setCurrentUser(user);
+					SuperWeChatHelper.getInstance().setCurrentUser(user);*/
 
 					long costTime = System.currentTimeMillis() - start;
 					//wait
