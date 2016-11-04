@@ -218,7 +218,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         layoutViewPager.setAdapter(adapter);
         layoutViewPager.setOffscreenPageLimit(4);
         adapter.addFragment(new ConversationListFragment(), getString(R.string.app_name));
-        adapter.addFragment(new ConversationListFragment(), getString(R.string.contacts));
+        adapter.addFragment(new ContactListFragment(), getString(R.string.contacts));
         adapter.addFragment(new DiscoverFragment(), getString(R.string.discover));
         adapter.addFragment(new SettingsFragment(), getString(R.string.me));
         adapter.notifyDataSetChanged();
@@ -348,7 +348,6 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     @Override
     public void onCheckedChange(int checkedPosition, boolean byUser) {
         layoutViewPager.setCurrentItem(checkedPosition, false);
-        layoutTabHost.setChecked(checkedPosition);
 
     }
 
