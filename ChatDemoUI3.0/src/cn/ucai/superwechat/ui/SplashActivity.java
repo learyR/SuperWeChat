@@ -50,11 +50,12 @@ public class SplashActivity extends BaseActivity {
 					EMClient.getInstance().groupManager().loadAllGroups();
 					EMClient.getInstance().chatManager().loadAllConversations();
 
-				/*	UserDao dao = new UserDao(mContext);
-					dao.getAppContactList();
-					User user = dao.getUser(EMClient.getInstance().getCurrentUser());
+					UserDao dao = new UserDao(mContext);
+					Map<String, User> appContactList = dao.getAppContactList();
+					/*User user = dao.getUser(EMClient.getInstance().getCurrentUser());
 					L.e(TAG, "user" + user);
 					SuperWeChatHelper.getInstance().setCurrentUser(user);*/
+					SuperWeChatHelper.getInstance().setAppContactList(appContactList);
 
 					long costTime = System.currentTimeMillis() - start;
 					//wait
