@@ -32,12 +32,12 @@
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_list_menu_item_radio.xml"
     },
     {
-        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
-        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_expanded_menu_layout.xml"
-    },
-    {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\em_activity_main.xml",
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\res\\layout\\em_activity_main.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
+        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_expanded_menu_layout.xml"
     },
     {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\rp_pay_add_card_dialog.xml",
@@ -220,12 +220,12 @@
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\ChatDemoUI3.0\\redpacketlibrary\\unspecified\\res\\layout\\rp_activity_webview.xml"
     },
     {
-        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
-        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
-    },
-    {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_received_file.xml",
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\ChatDemoUI3.0\\EaseUI\\unspecified\\res\\layout\\ease_row_received_file.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
+        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
     },
     {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\em_search_bar_with_padding.xml",
@@ -276,12 +276,12 @@
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\ChatDemoUI3.0\\redpacketlibrary\\unspecified\\res\\layout\\rp_fragment_verify_dentity.xml"
     },
     {
-        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\em_layout_loading_data.xml",
-        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\res\\layout\\em_layout_loading_data.xml"
-    },
-    {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\em_activity_diagnose.xml",
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\res\\layout\\em_activity_diagnose.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\em_layout_loading_data.xml",
+        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\res\\layout\\em_layout_loading_data.xml"
     },
     {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\view_title_popup.xml",
@@ -320,28 +320,28 @@
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.3.0\\res\\layout\\abc_screen_content_include.xml"
     },
     {
-        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\rp_pay_change_no_pwd_dialog.xml",
-        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\ChatDemoUI3.0\\redpacketlibrary\\unspecified\\res\\layout\\rp_pay_change_no_pwd_dialog.xml"
+        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\rp_hint_message_dialog.xml",
+        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\ChatDemoUI3.0\\redpacketlibrary\\unspecified\\res\\layout\\rp_hint_message_dialog.xml"
     },
     {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\rp_activity_record.xml",
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\ChatDemoUI3.0\\redpacketlibrary\\unspecified\\res\\layout\\rp_activity_record.xml"
     },
     {
-        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\rp_hint_message_dialog.xml",
-        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\ChatDemoUI3.0\\redpacketlibrary\\unspecified\\res\\layout\\rp_hint_message_dialog.xml"
+        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\rp_pay_change_no_pwd_dialog.xml",
+        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\ChatDemoUI3.0\\redpacketlibrary\\unspecified\\res\\layout\\rp_pay_change_no_pwd_dialog.xml"
     },
     {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\ease_row_sent_video.xml",
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\ChatDemoUI3.0\\EaseUI\\unspecified\\res\\layout\\ease_row_sent_video.xml"
     },
     {
-        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\rp_loading.xml",
-        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\ChatDemoUI3.0\\redpacketlibrary\\unspecified\\res\\layout\\rp_loading.xml"
-    },
-    {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\ease_widget_chat_input_menu.xml",
         "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\ChatDemoUI3.0\\EaseUI\\unspecified\\res\\layout\\ease_widget_chat_input_menu.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\rp_loading.xml",
+        "source": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\exploded-aar\\ChatDemoUI3.0\\redpacketlibrary\\unspecified\\res\\layout\\rp_loading.xml"
     },
     {
         "merged": "D:\\AndroidStudy\\temp\\ChatDemoUI3.0\\build\\intermediates\\res\\merged\\debug\\layout\\rp_pay_has_pwd_dialog.xml",

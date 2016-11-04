@@ -330,6 +330,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+
     }
 
     @Override

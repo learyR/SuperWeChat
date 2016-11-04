@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
@@ -12,7 +11,9 @@
         android:id="@+id/layout_viewPager"
         android:layout_below="@+id/layout_head"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="69dp"
+        >
     </cn.ucai.superwechat.widget.MFViewPager>
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,8 +27,9 @@
             android:background="@color/gray"
             />
         <cn.ucai.superwechat.widget.DMTabHost
+            android:id="@+id/layout_tabHost"
             android:layout_width="match_parent"
-            android:layout_height="47dp">
+            android:layout_height="67dp">
             <cn.ucai.superwechat.widget.DMTabButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
