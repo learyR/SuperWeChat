@@ -203,6 +203,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
      * init views
      */
     private void initView() {
+
 //		unreadLabel = (TextView) findViewById(R.id.unread_msg_number);
 //		unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
 //		mTabs = new Button[3];
@@ -211,6 +212,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
 //		mTabs[2] = (Button) findViewById(R.id.btn_setting);
 //		// select first tab
 //		mTabs[0].setSelected(true);
+
         txtLeft.setVisibility(View.VISIBLE);
         imgRight.setVisibility(View.VISIBLE);
         adapter = new MainTabAdpter(getSupportFragmentManager());
@@ -220,12 +222,11 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         adapter.addFragment(new ConversationListFragment(), getString(R.string.app_name));
         adapter.addFragment(new ContactListFragment(), getString(R.string.contacts));
         adapter.addFragment(new DiscoverFragment(), getString(R.string.discover));
-        adapter.addFragment(new SettingsFragment(), getString(R.string.me));
+        adapter.addFragment(new ProfileFragment(), getString(R.string.me));
         adapter.notifyDataSetChanged();
         layoutTabHost.setChecked(0);
         layoutTabHost.setOnCheckedChangeListener(this);
         layoutViewPager.setOnPageChangeListener(this);
-
     }
 
 
