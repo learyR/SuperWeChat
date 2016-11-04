@@ -373,7 +373,7 @@ public class SuperWeChatDBManager {
 		}
 		return users;
 	}
- /*   public synchronized boolean saveUser(User user) {
+    public synchronized boolean saveUser(User user) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(UserDao.USER_COLUMN_NAME, user.getMUserName());
@@ -418,7 +418,7 @@ public class SuperWeChatDBManager {
             result = db.update(UserDao.USER_TABLE_NAME, values, sql, new String[]{user.getMUserName()});
         }
         return result > 0;
-    }*/
+    }
 
    synchronized public void saveAppContact(User user) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();

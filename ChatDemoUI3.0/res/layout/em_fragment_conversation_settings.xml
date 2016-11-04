@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/common_bg"
     android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <include layout="@layout/common_head"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

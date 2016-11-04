@@ -110,14 +110,11 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
         super.onCreate(savedInstanceState);
         savePower();
         checkedLogined(savedInstanceState);
-
         setContentView(R.layout.em_activity_main);
         ButterKnife.bind(this);
         // runtime permission for android 6.0, just require all permissions here for simple
         requestPermissions();
-
         initView();
-
         umeng();
         checkedAccount();
 
@@ -338,6 +335,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
     public void onPageSelected(int position) {
         layoutTabHost.setChecked(position);
         layoutViewPager.setCurrentItem(position);
+
 
     }
 
