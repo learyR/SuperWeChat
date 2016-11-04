@@ -57,13 +57,14 @@ public class ProfileFragment extends Fragment {
     private void setUserInfo() {
         EaseUserUtils.setCurrentAppUserAvatar(getActivity(), ivProfileAvatar);
         EaseUserUtils.setCurrentAppUserNick(tvProfileNickname);
-        EaseUserUtils.setCurrentAppUserNameWithNo(tvProfileUsername);
+        EaseUserUtils.setCurrentAppUserName(tvProfileUsername);
     }
 
     @OnClick({R.id.layout_profile_view, R.id.tv_profile_money, R.id.tv_profile_settings})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.layout_profile_view:
+                MFGT.gotoUserProfileActivity(getActivity());
                 break;
             //red packet code : 进入零钱页面
             case R.id.tv_profile_money:

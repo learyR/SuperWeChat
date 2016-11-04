@@ -121,9 +121,10 @@ public class EaseUserUtils {
         setAppUserNick(userName, tvProfileNickname);
     }
 
-    public static void setCurrentAppUserNameWithNo(TextView tvProfileUsername) {
+
+    public static void setCurrentAppUserName(TextView tvProfileUsername) {
         String userName = EMClient.getInstance().getCurrentUser();
-        setAppUserName("微信号 ：", userName, tvProfileUsername);
+        setAppUserName("", userName, tvProfileUsername);
     }
 
     private static void setAppUserName(String s, String userName, TextView tvProfileUsername) {
