@@ -34,13 +34,20 @@ public class EaseUserUtils {
         return null;
     }
     /**
-     * get EaseUser according username
+     * get User according username
      * @param username
      * @return
      */
     public static User getAppUserInfo(String username){
         if (userProvider != null) {
             return userProvider.getAppUser(username);
+        }
+        return null;
+    }
+    public static User getCurrentAppUserInfo(){
+        String userName = EMClient.getInstance().getCurrentUser();
+        if (userProvider != null) {
+            return userProvider.getAppUser(userName);
         }
         return null;
     }
