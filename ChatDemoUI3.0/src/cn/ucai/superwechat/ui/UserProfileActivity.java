@@ -159,8 +159,7 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
                         }
                     });
                 } else {
-                    updateAppNick(user.getMUserNick());
-
+                    updateAppNick(nickName);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -312,7 +311,6 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
                 editText.setText(user.getMUserNick());
                 new Builder(this).setTitle(R.string.setting_nickname).setIcon(android.R.drawable.ic_dialog_info).setView(editText)
                         .setPositiveButton(R.string.dl_ok, new DialogInterface.OnClickListener() {
-
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String nickString = editText.getText().toString().trim();
