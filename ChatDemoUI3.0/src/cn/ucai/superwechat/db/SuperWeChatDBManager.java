@@ -481,9 +481,9 @@ public class SuperWeChatDBManager {
                 ContentValues values = new ContentValues();
                 values.put(UserDao.USER_TABLE_NAME, user.getMUserName());
                 if(user.getMUserNick() != null)
-                    values.put(UserDao.COLUMN_NAME_NICK, user.getMUserNick());
+                    values.put(UserDao.USER_COLUMN_NICK, user.getMUserNick());
                 if(user.getMAvatarId() != null)
-                    values.put(UserDao.COLUMN_NAME_AVATAR, user.getMAvatarId());
+                    values.put(UserDao.USER_COLUMN_AVATAR_ID, user.getMAvatarId());
                 if (user.getMAvatarType() != null) {
                     values.put(UserDao.USER_COLUMN_AVATAR_TYPE, user.getMAvatarType());
                 }
