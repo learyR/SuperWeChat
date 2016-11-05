@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="User_name_cannot_be_modified">用户名不能被修改</string>
+</resources>
