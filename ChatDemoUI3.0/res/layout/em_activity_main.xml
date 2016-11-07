@@ -7,6 +7,7 @@
     android:background="@color/common_bg">
 
     <include layout="@layout/common_head" android:id="@+id/layout_head"/>
+
     <cn.ucai.superwechat.widget.MFViewPager
         android:id="@+id/layout_viewPager"
         android:layout_below="@+id/layout_head"
