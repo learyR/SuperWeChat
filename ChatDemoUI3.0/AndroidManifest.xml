@@ -476,7 +476,8 @@
             android:value="3ecea51f560650b1ed8a4b99808f52e8" />
 
         <activity android:name=".ui.GuideActivity" />
-        <activity android:name=".ui.PersonalProfileActivity"></activity>
+        <activity android:name=".ui.PersonalProfileActivity" />
+        <activity android:name=".ui.AddFriendActivity"></activity>
     </application>
 
 </manifest>
