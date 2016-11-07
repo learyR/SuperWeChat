@@ -251,6 +251,7 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
                 case 2:
                     break;
                 case 3:
+                    RedPacketUtil.startChangeActivity(MainActivity.this);
                     break;
             }
         }
