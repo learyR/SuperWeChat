@@ -134,6 +134,10 @@ public class EaseUserUtils {
         setAppUserName("", userName, tvProfileUsername);
     }
 
+    public static void setAppUserNameWithNo(String userName, TextView tvProfileUsername) {
+        setAppUserName("微信号", userName, tvProfileUsername);
+    }
+
     private static void setAppUserName(String s, String userName, TextView tvProfileUsername) {
         tvProfileUsername.setText(s + userName);
     }
