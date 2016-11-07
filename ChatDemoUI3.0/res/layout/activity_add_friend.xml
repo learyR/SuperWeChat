@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_friend"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="cn.ucai.superwechat.ui.AddFriendActivity">
+    <include layout="@layout/common_head"/>
+    <EditText
+        android:id="@+id/et_msg"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="15dp"
+        android:paddingLeft="8dp"
+        android:background="@drawable/em_button_normal_shape"
+        android:textColorHint="#b3b3b3"
+        android:textSize="25sp"
+        android:singleLine="true"
+        />
+</LinearLayout>
