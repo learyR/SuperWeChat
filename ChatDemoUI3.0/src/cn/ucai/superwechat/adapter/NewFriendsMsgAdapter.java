@@ -16,10 +16,17 @@ package cn.ucai.superwechat.adapter;
 import java.util.List;
 
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.domain.User;
+import com.hyphenate.easeui.utils.EaseUserUtils;
+
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.bean.Result;
+import cn.ucai.superwechat.data.NetDao;
+import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.db.InviteMessgeDao;
 import cn.ucai.superwechat.domain.InviteMessage;
 import cn.ucai.superwechat.domain.InviteMessage.InviteMesageStatus;
+import cn.ucai.superwechat.utils.ResultUtils;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -65,34 +72,57 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-		
+
 		String str1 = context.getResources().getString(R.string.Has_agreed_to_your_friend_request);
 		String str2 = context.getResources().getString(R.string.agree);
-		
+
 		String str3 = context.getResources().getString(R.string.Request_to_add_you_as_a_friend);
 		String str4 = context.getResources().getString(R.string.Apply_to_the_group_of);
 		String str5 = context.getResources().getString(R.string.Has_agreed_to);
 		String str6 = context.getResources().getString(R.string.Has_refused_to);
-		
+
 		String str7 = context.getResources().getString(R.string.refuse);
 		String str8 = context.getResources().getString(R.string.invite_join_group);
         String str9 = context.getResources().getString(R.string.accept_join_group);
 		String str10 = context.getResources().getString(R.string.refuse_join_group);
-		
+
 		final InviteMessage msg = getItem(position);
 		if (msg != null) {
-		    
+
 		    holder.agree.setVisibility(View.INVISIBLE);
-		    
+
 			if(msg.getGroupId() != null){ // show group name
 				holder.groupContainer.setVisibility(View.VISIBLE);
 				holder.groupname.setText(msg.getGroupName());
 			} else{
 				holder.groupContainer.setVisibility(View.GONE);
 			}
-			
 			holder.reason.setText(msg.getReason());
 			holder.name.setText(msg.getFrom());
+			NetDao.searchUser(context, msg.getFrom(), new OkHttpUtils.OnCompleteListener<String>() {
+				@Override
+				public void onSuccess(String s) {
+					if (s!= null) {
+						Result result = ResultUtils.getResultFromJson(s, User.class);
+						if (result.isRetMsg()) {
+							User u = (User) result.getRetData();
+							EaseUserUtils.setAppUserAvatar(context, msg.getFrom(), holder.avator);
+							EaseUserUtils.setAppUserNick(u.getMUserNick(),holder.name);
+						} else {
+
+						}
+					} else {
+
+					}
+				}
+
+				@Override
+				public void onError(String error) {
+
+				}
+			});
+
+
 			// holder.time.setText(DateUtils.getTimestampString(new
 			// Date(msg.getTime())));
 			if (msg.getStatus() == InviteMesageStatus.BEAGREED) {
@@ -104,7 +134,7 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
                 holder.agree.setEnabled(true);
                 holder.agree.setBackgroundResource(android.R.drawable.btn_default);
                 holder.agree.setText(str2);
-			    
+
 				holder.status.setVisibility(View.VISIBLE);
 				holder.status.setEnabled(true);
 				holder.status.setBackgroundResource(android.R.drawable.btn_default);
@@ -123,7 +153,7 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
                         holder.reason.setText(str8 + msg.getGroupName());
                     }
 				}
-				
+
 				// set click listener
                 holder.agree.setOnClickListener(new OnClickListener() {
                     @Override
@@ -163,11 +193,11 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
 		return convertView;
 	}
 
+
+
 	/**
 	 * accept invitation
 	 * 
-	 * @param button
-	 * @param username
 	 */
 	private void acceptInvitation(final Button buttonAgree, final Button buttonRefuse, final InviteMessage msg) {
 		final ProgressDialog pd = new ProgressDialog(context);
@@ -224,8 +254,6 @@ public class NewFriendsMsgAdapter extends ArrayAdapter<InviteMessage> {
 	/**
      * decline invitation
      * 
-     * @param button
-     * @param username
      */
     private void refuseInvitation(final Button buttonAgree, final Button buttonRefuse, final InviteMessage msg) {
         final ProgressDialog pd = new ProgressDialog(context);
