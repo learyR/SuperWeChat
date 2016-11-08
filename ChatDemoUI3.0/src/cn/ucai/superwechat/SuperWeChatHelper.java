@@ -65,6 +65,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 public class SuperWeChatHelper {
+
     /**
      * data sync listener
      */
@@ -599,15 +600,14 @@ public class SuperWeChatHelper {
             broadcastManager.sendBroadcast(new Intent(Constant.ACTION_GROUP_CHANAGED));
         }
     }
-    
+
     /***
      * 好友变化listener
-     * 
      */
     public class MyContactListener implements EMContactListener {
-
         @Override
         public void onContactAdded(String username) {
+            L.e(TAG, "MyContactListener,onContactedAdd...");
             // save contact
             Map<String, EaseUser> localUsers = getContactList();
             Map<String, EaseUser> toAddUsers = new HashMap<String, EaseUser>();
@@ -624,6 +624,7 @@ public class SuperWeChatHelper {
 
         @Override
         public void onContactDeleted(String username) {
+            L.e(TAG, "MyContactListener,onContactedAdd...");
             Map<String, EaseUser> localUsers = SuperWeChatHelper.getInstance().getContactList();
             localUsers.remove(username);
             userDao.deleteContact(username);
@@ -634,6 +635,7 @@ public class SuperWeChatHelper {
 
         @Override
         public void onContactInvited(String username, String reason) {
+            L.e(TAG, "MyContactListener,onContactedAdd...");
             List<InviteMessage> msgs = inviteMessgeDao.getMessagesList();
 
             for (InviteMessage inviteMessage : msgs) {
@@ -655,6 +657,7 @@ public class SuperWeChatHelper {
 
         @Override
         public void onContactAgreed(String username) {
+            L.e(TAG, "MyContactListener,onContactedAdd...");
             List<InviteMessage> msgs = inviteMessgeDao.getMessagesList();
             for (InviteMessage inviteMessage : msgs) {
                 if (inviteMessage.getFrom().equals(username)) {
