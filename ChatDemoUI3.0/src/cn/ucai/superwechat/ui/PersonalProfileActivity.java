@@ -75,13 +75,14 @@ public class PersonalProfileActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.img_back, R.id.btn_send, R.id.btn_addFriend, R.id.btn_chat})
+    @OnClick({R.id.img_back, R.id.btn_sendMsg, R.id.btn_addFriend, R.id.btn_chat})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_back:
                 MFGT.finish(this);
                 break;
-            case R.id.btn_send:
+            case R.id.btn_sendMsg:
+                MFGT.gotoChatActivity(this,user.getMUserName());
                 break;
             case R.id.btn_addFriend:
                 MFGT.gotoAddFriendActivity(this,user.getMUserName());
