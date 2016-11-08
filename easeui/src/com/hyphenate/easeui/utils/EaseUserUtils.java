@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.baidu.mapapi.map.Text;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hyphenate.chat.EMClient;
@@ -131,14 +132,15 @@ public class EaseUserUtils {
 
     public static void setCurrentAppUserName(TextView tvProfileUsername) {
         String userName = EMClient.getInstance().getCurrentUser();
-        setAppUserName("", userName, tvProfileUsername);
+        setAppUserName("微信号：", userName, tvProfileUsername);
     }
 
     public static void setAppUserNameWithNo(String userName, TextView tvProfileUsername) {
-        setAppUserName("微信号", userName, tvProfileUsername);
+        setAppUserName("", userName, tvProfileUsername);
     }
 
     private static void setAppUserName(String s, String userName, TextView tvProfileUsername) {
         tvProfileUsername.setText(s + userName);
     }
+
 }
