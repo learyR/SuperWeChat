@@ -25,6 +25,7 @@ import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.utils.MFGT;
 import cn.ucai.superwechat.widget.ContactItemView;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.ui.EaseContactListFragment;
 import com.hyphenate.util.EMLog;
 import com.hyphenate.util.NetUtils;
@@ -230,10 +231,11 @@ public class ContactListFragment extends EaseContactListFragment {
                 e.printStackTrace();
             }
 			return true;
-		}else if(item.getItemId() == R.id.add_to_blacklist){
-			moveToBlacklist(toBeProcessUsername);
-			return true;
 		}
+//        else if(item.getItemId() == R.id.add_to_blacklist){
+//			moveToBlacklist(toBeProcessUsername);
+//			return true;
+//		}
 		return super.onContextItemSelected(item);
 	}
 
