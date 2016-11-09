@@ -3,6 +3,8 @@ package cn.ucai.superwechat.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+
+import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.runtimepermissions.PermissionsManager;
 import com.hyphenate.easeui.ui.EaseChatFragment;
@@ -29,18 +31,18 @@ public class ChatActivity extends BaseActivity{
         //pass parameters to chat fragment
         chatFragment.setArguments(getIntent().getExtras());
         getSupportFragmentManager().beginTransaction().add(R.id.container, chatFragment).commit();
-        
+
     }
-    
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         activityInstance = null;
     }
-    
+
     @Override
     protected void onNewIntent(Intent intent) {
-    	// make sure only one chat activity is opened
+        // make sure only one chat activity is opened
         String username = intent.getStringExtra("userId");
         if (toChatUsername.equals(username))
             super.onNewIntent(intent);
@@ -50,22 +52,23 @@ public class ChatActivity extends BaseActivity{
         }
 
     }
-    
+
     @Override
     public void onBackPressed() {
         chatFragment.onBackPressed();
-        if (EasyUtils.isSingleActivity(this)) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
+//        if (EasyUtils.isSingleActivity(this)) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(I.ACTION_BACK_CONVERSION, true);
+        startActivity(intent);
+//        }
     }
-    
+
     public String getToChatUsername(){
         return toChatUsername;
     }
 
     @Override public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-        @NonNull int[] grantResults) {
+                                                     @NonNull int[] grantResults) {
         PermissionsManager.getInstance().notifyPermissionsChange(permissions, grantResults);
     }
 }

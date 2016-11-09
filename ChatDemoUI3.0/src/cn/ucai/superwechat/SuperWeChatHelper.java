@@ -660,7 +660,7 @@ public class SuperWeChatHelper {
             userDao.deleteContact(username);
             inviteMessgeDao.deleteMessage(username);
             SuperWeChatHelper.getInstance().delAppContact(username);
-            NetDao.delContact(appContext, EMClient.getInstance().getCurrentUser(), username, new OkHttpUtils.OnCompleteListener<String>() {
+            /*NetDao.delContact(appContext, EMClient.getInstance().getCurrentUser(), username, new OkHttpUtils.OnCompleteListener<String>() {
                 @Override
                 public void onSuccess(String s) {
                     if (s != null) {
@@ -670,12 +670,11 @@ public class SuperWeChatHelper {
                         }
                     }
                 }
-
                 @Override
                 public void onError(String error) {
 
                 }
-            });
+            });*/
 
 
             broadcastManager.sendBroadcast(new Intent(Constant.ACTION_CONTACT_CHANAGED));
