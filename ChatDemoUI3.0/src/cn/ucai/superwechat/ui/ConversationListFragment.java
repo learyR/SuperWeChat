@@ -120,7 +120,6 @@ public class ConversationListFragment extends EaseConversationListFragment{
         } else {
             return false;
         }
-
     	EMConversation tobeDeleteCons = conversationListView.getItem(((AdapterContextMenuInfo) item.getMenuInfo()).position);
     	if (tobeDeleteCons == null) {
     	    return true;

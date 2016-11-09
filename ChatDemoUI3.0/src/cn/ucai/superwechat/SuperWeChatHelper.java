@@ -71,6 +71,11 @@ import android.util.Log;
 
 public class SuperWeChatHelper {
 
+    public void delAppContact(String username) {
+        getAppContactList().remove(username);
+        demoModel.delAppContact(username);
+    }
+
     /**
      * data sync listener
      */
