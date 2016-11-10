@@ -2,6 +2,8 @@ package cn.ucai.superwechat.data;
 
 import android.content.Context;
 
+import com.hyphenate.chat.EMClient;
+
 import java.io.File;
 
 import cn.ucai.superwechat.I;
@@ -108,6 +110,12 @@ public class NetDao {
                 .execute(listener);
     }
 
+    /**
+     * 同步同步信息
+     * @param context
+     * @param userName
+     * @param listener
+     */
     public static void searchUser(Context context, String userName, OkHttpUtils.OnCompleteListener<String> listener) {
         OkHttpUtils<String> utils = new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_FIND_USER)
@@ -115,6 +123,14 @@ public class NetDao {
                 .targetClass(String.class)
                 .execute(listener);
     }
+
+    /**
+     * 添加联系人
+     * @param context
+     * @param userName
+     * @param cusername
+     * @param listener
+     */
     public static void addContact(Context context, String userName, String cusername, OkHttpUtils.OnCompleteListener<String> listener) {
         OkHttpUtils<String> utils = new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_ADD_CONTACT)
@@ -123,6 +139,14 @@ public class NetDao {
                 .targetClass(String.class)
                 .execute(listener);
     }
+
+    /**
+     * 删除联系人
+     * @param context
+     * @param userName
+     * @param cusername
+     * @param listener
+     */
     public static void delContact(Context context, String userName, String cusername, OkHttpUtils.OnCompleteListener<String> listener) {
         OkHttpUtils<String> utils = new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_DELETE_CONTACT)
@@ -130,6 +154,14 @@ public class NetDao {
                 .addParam(I.Contact.CU_NAME, cusername)
                 .targetClass(String.class)
                 .execute(listener);
+    }
+    public static void downloadContact(Context context, OkHttpUtils.OnCompleteListener<String> listener) {
+        OkHttpUtils<String> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_DOWNLOAD_CONTACT_ALL_LIST)
+                .addParam(I.Contact.USER_NAME, EMClient.getInstance().getCurrentUser())
+                .targetClass(String.class)
+                .execute(listener);
+
     }
 
 }
