@@ -3,48 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eee"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:weightSum="1">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_top_bar"
-        android:background="@color/top_bar_normal_bg"
-        android:gravity="center_vertical" >
-
-        <LinearLayout
-            android:layout_width="45dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/ease_common_tab_bg"
-            android:onClick="back" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="9dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/em_mm_title_back" />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/The_new_group_chat"
-            android:textColor="#ffffff"
-            android:textSize="20sp" />
-
-        <Button
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/ease_common_tab_bg"
-            android:onClick="save"
-            android:text="@string/button_save"
-            android:textColor="#fff"
-            android:textSize="18sp" />
-    </RelativeLayout>
+   <include layout="@layout/common_head"/>
 
     <EditText
         android:id="@+id/edit_group_name"
@@ -71,6 +33,34 @@
         android:paddingLeft="5dp"
         android:paddingTop="5dp"
         android:textSize="18sp" />
+    <LinearLayout
+        android:id="@+id/layout_group_icon"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/em_button_normal_shape"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="群图标"
+            android:textColor="#000"
+            android:layout_gravity="center_vertical"
+            android:textSize="10sp" />
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_weight="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitXY"
+            android:paddingRight="5dp"
+            android:src="@drawable/ease_group_icon"
+            />
+    </LinearLayout>
     
     
     <LinearLayout 
@@ -80,7 +70,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/em_button_normal_shape"
-        >
+        android:layout_weight="0.01">
         <TextView 
             android:layout_marginLeft="5dp"
             android:layout_width="wrap_content"

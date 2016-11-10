@@ -3,6 +3,7 @@ package cn.ucai.superwechat.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 
 import com.hyphenate.easeui.domain.User;
 
@@ -11,10 +12,13 @@ import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.ui.AddContactActivity;
 import cn.ucai.superwechat.ui.AddFriendActivity;
 import cn.ucai.superwechat.ui.ChatActivity;
+import cn.ucai.superwechat.ui.GroupsActivity;
 import cn.ucai.superwechat.ui.LoginActivity;
 import cn.ucai.superwechat.ui.MainActivity;
 import cn.ucai.superwechat.ui.NewFriendsMsgActivity;
+import cn.ucai.superwechat.ui.NewGroupActivity;
 import cn.ucai.superwechat.ui.PersonalProfileActivity;
+import cn.ucai.superwechat.ui.PublicGroupsActivity;
 import cn.ucai.superwechat.ui.RegisterActivity;
 import cn.ucai.superwechat.ui.SettingsActivity;
 import cn.ucai.superwechat.ui.UserProfileActivity;
@@ -100,5 +104,15 @@ public class MFGT {
         intent.setClass(context, ChatActivity.class);
         intent.putExtra("userId", userName);
         startActivity(context, intent);
+    }
+
+    public static void gotoGroupsActivity(Activity context) {
+        startActivity(context, GroupsActivity.class);
+    }
+    public static void gotoNewGroupActivity(Activity context) {
+        startActivity(context, NewGroupActivity.class);
+    }
+    public static void gotoPublicGroupsActivity(Activity context) {
+        startActivity(context, PublicGroupsActivity.class);
     }
 }
