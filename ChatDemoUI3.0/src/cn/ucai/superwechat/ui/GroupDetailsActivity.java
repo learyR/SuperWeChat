@@ -368,6 +368,7 @@ public class GroupDetailsActivity extends BaseActivity implements OnClickListene
 		}).start();
 	}
 
+
 	/**
 	 * 增加群成员
 	 * 
