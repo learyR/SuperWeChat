@@ -21,6 +21,7 @@ import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.bean.Result;
 import cn.ucai.superwechat.data.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
+import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.MFGT;
 import cn.ucai.superwechat.utils.ResultUtils;
 
@@ -60,13 +61,13 @@ public class PersonalProfileActivity extends BaseActivity {
         initView();
         user = SuperWeChatHelper.getInstance().getAppContactList().get(username);
         if (user == null) {
-            syncUserInfo();
             isFriend = false;
         } else {
             setUserInfo();
             isFriend = true;
         }
         isFriend(isFriend);
+        syncUserInfo();
     }
 
     private void syncUserInfo() {
@@ -75,8 +76,9 @@ public class PersonalProfileActivity extends BaseActivity {
             public void onSuccess(String s) {
                 if (s != null) {
                     Result result = ResultUtils.getResultFromJson(s, User.class);
-                    if (result == null & result.isRetMsg()) {
+                    if (result != null & result.isRetMsg()) {
                         user = (User) result.getRetData();
+                        L.e("lalala", "demaxiya=" + user);
                         if (user != null) {
                             setUserInfo();
                             if (isFriend) {
@@ -100,7 +102,6 @@ public class PersonalProfileActivity extends BaseActivity {
         imgBack.setVisibility(View.VISIBLE);
         txtTitle.setVisibility(View.VISIBLE);
         txtTitle.setText(getString(R.string.userinfo_txt_profile));
-
     }
 
     private void isFriend(boolean isFriend) {
@@ -114,7 +115,7 @@ public class PersonalProfileActivity extends BaseActivity {
     }
 
     private void setUserInfo() {
-        EaseUserUtils.setAppUserAvatar(this, user.getMUserName(), ivAvatar);
+        EaseUserUtils.setAppUserAvatar(this,user.getMUserName(), ivAvatar);
         EaseUserUtils.setAppUserNick(user.getMUserNick(), tvUserInfoNick);
         EaseUserUtils.setAppUserNameWithNo(user.getMUserName(), tvUserName);
     }
@@ -127,16 +128,16 @@ public class PersonalProfileActivity extends BaseActivity {
                 MFGT.finish(this);
                 break;
             case R.id.btn_sendMsg:
-                MFGT.gotoChatActivity(this,user.getMUserName());
+                MFGT.gotoChatActivity(this,username);
                 break;
             case R.id.btn_addFriend:
-                MFGT.gotoAddFriendActivity(this,user.getMUserName());
+                MFGT.gotoAddFriendActivity(this,username);
                 break;
             case R.id.btn_chat:
                 if (!EMClient.getInstance().isConnected())
                     Toast.makeText(this, R.string.not_connect_to_server, Toast.LENGTH_SHORT).show();
                 else {
-                    startActivity(new Intent(this, VideoCallActivity.class).putExtra("username", user.getMUserName())
+                    startActivity(new Intent(this, VideoCallActivity.class).putExtra("username", username)
                             .putExtra("isComingCall", false));
                     // videoCallBtn.setEnabled(false);
 //                    inputMenu.hideExtendMenuContainer();
