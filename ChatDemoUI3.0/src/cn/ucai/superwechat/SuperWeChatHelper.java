@@ -1131,11 +1131,11 @@ public class SuperWeChatHelper {
        if(isSyncingContactsWithServer){
            return;
        }
-       
        isSyncingContactsWithServer = true;
        NetDao.downloadContact(appContext, new OkHttpUtils.OnCompleteListener<String>() {
            @Override
            public void onSuccess(String s) {
+               L.e(TAG,"SuperWeChat+s="+s);
                if (s != null) {
                    Result result = ResultUtils.getListResultFromJson(s, User.class);
                    if (result != null && result.isRetMsg()) {

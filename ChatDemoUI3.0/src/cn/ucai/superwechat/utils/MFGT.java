@@ -83,10 +83,10 @@ public class MFGT {
     public static void gotoAddContactActivity(Activity context) {
         startActivity(context, AddContactActivity.class);
     }
-    public static void gotoPersonalProfileActivity(Activity context,User user) {
+    public static void gotoPersonalProfileActivity(Activity context,String userName) {
         Intent intent = new Intent();
         intent.setClass(context, PersonalProfileActivity.class);
-        intent.putExtra(I.User.USER_NAME, user);
+        intent.putExtra(I.User.USER_NAME, userName);
         startActivity(context, intent);
     }
     public static void gotoAddFriendActivity(Activity context,String  userName) {

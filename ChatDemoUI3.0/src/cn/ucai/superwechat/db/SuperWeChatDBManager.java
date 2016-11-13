@@ -462,10 +462,7 @@ public class SuperWeChatDBManager {
                 user.setMAvatarPath(cursor.getString(cursor.getColumnIndex(UserDao.USER_COLUMN_AVATAR_PATH)));
                 user.setMAvatarSuffix(cursor.getString(cursor.getColumnIndex(UserDao.USER_COLUMN_AVATAR_SUFFIX)));
                 user.setMAvatarLastUpdateTime(cursor.getString(cursor.getColumnIndex(UserDao.USER_COLUMN_AVATAR_LASTUPDATE_TIME)));
-
-
                     EaseCommonUtils.setAppUserInitialLetter(user);
-
                 users.put(username, user);
             }
             cursor.close();
@@ -479,7 +476,7 @@ public class SuperWeChatDBManager {
             db.delete(UserDao.USER_TABLE_NAME, null, null);
             for (User user : contactList) {
                 ContentValues values = new ContentValues();
-                values.put(UserDao.USER_TABLE_NAME, user.getMUserName());
+                values.put(UserDao.USER_COLUMN_NAME, user.getMUserName());
                 if(user.getMUserNick() != null)
                     values.put(UserDao.USER_COLUMN_NICK, user.getMUserNick());
                 if(user.getMAvatarId() != null)
