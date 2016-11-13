@@ -13,6 +13,7 @@ import com.hyphenate.easeui.R;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.controller.EaseUI.EaseUserProfileProvider;
 import com.hyphenate.easeui.domain.EaseUser;
+import com.hyphenate.easeui.domain.Group;
 import com.hyphenate.easeui.domain.User;
 
 public class EaseUserUtils {
@@ -71,7 +72,23 @@ public class EaseUserUtils {
             Glide.with(context).load(R.drawable.default_hd_avatar).into(imageView);
         }
     }
-    
+    /**
+     * set user avatar
+     * @param hxid
+     */
+    public static void setAppGroupAvatar(Context context, String hxid, ImageView imageView){
+        if(hxid!=null){
+            try {
+                int avatarResId = Integer.parseInt(Group.getAvatar(hxid));
+                Glide.with(context).load(avatarResId).into(imageView);
+            } catch (Exception e) {
+                //use default avatar
+                Glide.with(context).load(Group.getAvatar(hxid)).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.default_hd_avatar).into(imageView);
+            }
+        }else{
+            Glide.with(context).load(R.drawable.default_hd_avatar).into(imageView);
+        }
+    }
     /**
      * set user's nickname
      */

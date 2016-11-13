@@ -26,6 +26,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -36,6 +37,8 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMCursorResult;
 import com.hyphenate.chat.EMGroupInfo;
 import cn.ucai.superwechat.R;
+
+import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.exceptions.HyphenateException;
 
 import java.util.ArrayList;
@@ -45,7 +48,7 @@ public class PublicGroupsActivity extends BaseActivity {
 	private ProgressBar pb;
 	private ListView listView;
 	private GroupsAdapter adapter;
-	
+
 	private List<EMGroupInfo> groupsList;
 	private boolean isLoading;
 	private boolean isFirstLoading = true;
@@ -56,7 +59,7 @@ public class PublicGroupsActivity extends BaseActivity {
     private ProgressBar footLoadingPB;
     private TextView footLoadingText;
     private Button searchBtn;
-    
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +70,7 @@ public class PublicGroupsActivity extends BaseActivity {
 		listView = (ListView) findViewById(R.id.list);
 		groupsList = new ArrayList<EMGroupInfo>();
 		searchBtn = (Button) findViewById(R.id.btn_search);
-		
+
 		View footView = getLayoutInflater().inflate(R.layout.em_listview_footer_view, listView, false);
         footLoadingLayout = (LinearLayout) footView.findViewById(R.id.loading_layout);
         footLoadingPB = (ProgressBar)footView.findViewById(R.id.loading_bar);
@@ -86,7 +89,7 @@ public class PublicGroupsActivity extends BaseActivity {
             }
         });
         listView.setOnScrollListener(new OnScrollListener() {
-            
+
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 if(scrollState == OnScrollListener.SCROLL_STATE_IDLE){
@@ -98,19 +101,19 @@ public class PublicGroupsActivity extends BaseActivity {
                     }
                 }
             }
-            
+
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                
+
             }
         });
-        
+
 	}
 
 	public void search(View view){
 	    startActivity(new Intent(this, PublicGroupsSeachActivity.class));
 	}
-	
+
 	private void loadAndShowData(){
 	    new Thread(new Runnable() {
 
@@ -167,10 +170,12 @@ public class PublicGroupsActivity extends BaseActivity {
 	private class GroupsAdapter extends ArrayAdapter<EMGroupInfo> {
 
 		private LayoutInflater inflater;
+        Context mContext;
 
 		public GroupsAdapter(Context context, int res, List<EMGroupInfo> groups) {
 			super(context, res, groups);
-			this.inflater = LayoutInflater.from(context);
+            mContext = context;
+            this.inflater = LayoutInflater.from(context);
 		}
 
 		@Override
@@ -180,11 +185,11 @@ public class PublicGroupsActivity extends BaseActivity {
 			}
 
 			((TextView) convertView.findViewById(R.id.name)).setText(getItem(position).getGroupName());
-
+            EaseUserUtils.setAppGroupAvatar(mContext,getItem(position).getGroupId(),((ImageView) convertView.findViewById(R.id.avatar)));
 			return convertView;
 		}
 	}
-	
+
 	public void back(View view){
 		finish();
 	}
