@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.baidu.mapapi.map.Text;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hyphenate.chat.EMClient;
@@ -73,6 +72,19 @@ public class EaseUserUtils {
         }
     }
     /**
+     * set user's nickname
+     */
+    public static void setUserNick(String username,TextView textView){
+        if(textView != null){
+        	EaseUser user = getUserInfo(username);
+        	if(user != null && user.getNick() != null){
+        		textView.setText(user.getNick());
+        	}else{
+        		textView.setText(username);
+        	}
+        }
+    }
+    /**
      * set user avatar
      * @param hxid
      */
@@ -87,19 +99,6 @@ public class EaseUserUtils {
             }
         }else{
             Glide.with(context).load(R.drawable.default_hd_avatar).into(imageView);
-        }
-    }
-    /**
-     * set user's nickname
-     */
-    public static void setUserNick(String username,TextView textView){
-        if(textView != null){
-        	EaseUser user = getUserInfo(username);
-        	if(user != null && user.getNick() != null){
-        		textView.setText(user.getNick());
-        	}else{
-        		textView.setText(username);
-        	}
         }
     }
 

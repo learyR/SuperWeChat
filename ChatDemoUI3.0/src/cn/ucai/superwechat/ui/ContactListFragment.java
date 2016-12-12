@@ -13,27 +13,6 @@
  */
 package cn.ucai.superwechat.ui;
 
-import java.util.Hashtable;
-import java.util.Map;
-
-import com.hyphenate.chat.EMClient;
-import cn.ucai.superwechat.SuperWeChatHelper;
-
-import cn.ucai.superwechat.R;
-import cn.ucai.superwechat.bean.Result;
-import cn.ucai.superwechat.data.NetDao;
-import cn.ucai.superwechat.data.OkHttpUtils;
-import cn.ucai.superwechat.db.InviteMessgeDao;
-import cn.ucai.superwechat.db.UserDao;
-import cn.ucai.superwechat.utils.MFGT;
-import cn.ucai.superwechat.utils.ResultUtils;
-import cn.ucai.superwechat.widget.ContactItemView;
-import com.hyphenate.easeui.domain.User;
-import com.hyphenate.easeui.domain.User;
-import com.hyphenate.easeui.ui.EaseContactListFragment;
-import com.hyphenate.util.EMLog;
-import com.hyphenate.util.NetUtils;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -48,7 +27,25 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
-import static cn.ucai.superwechat.R.id.username;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.easeui.domain.User;
+import com.hyphenate.easeui.ui.EaseContactListFragment;
+import com.hyphenate.util.EMLog;
+import com.hyphenate.util.NetUtils;
+
+import java.util.Hashtable;
+import java.util.Map;
+
+import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.SuperWeChatHelper;
+import cn.ucai.superwechat.bean.Result;
+import cn.ucai.superwechat.data.NetDao;
+import cn.ucai.superwechat.data.OkHttpUtils;
+import cn.ucai.superwechat.db.InviteMessgeDao;
+import cn.ucai.superwechat.db.UserDao;
+import cn.ucai.superwechat.utils.MFGT;
+import cn.ucai.superwechat.utils.ResultUtils;
+import cn.ucai.superwechat.widget.ContactItemView;
 
 /**
  * contact list
@@ -73,7 +70,7 @@ public class ContactListFragment extends EaseContactListFragment {
         applicationItem = (ContactItemView) headerView.findViewById(R.id.application_item);
         applicationItem.setOnClickListener(clickListener);
         headerView.findViewById(R.id.group_item).setOnClickListener(clickListener);
-//        headerView.findViewById(R.id.chat_room_item).setOnClickListener(clickListener);
+        headerView.findViewById(R.id.chat_room_item).setOnClickListener(clickListener);
 //        headerView.findViewById(R.id.robot_item).setOnClickListener(clickListener);
         listView.addHeaderView(headerView);
         //add loading view
@@ -200,10 +197,10 @@ public class ContactListFragment extends EaseContactListFragment {
                 MFGT.gotoGroupsActivity(getActivity());
 //                startActivity(new Intent(getActivity(), GroupsActivity.class));
                 break;
-//            case R.id.chat_room_item:
-//                //进入聊天室列表页面
-//                startActivity(new Intent(getActivity(), PublicChatRoomsActivity.class));
-//                break;
+            case R.id.chat_room_item:
+                //进入聊天室列表页面
+                startActivity(new Intent(getActivity(), PublicChatRoomsActivity.class));
+                break;
 //            case R.id.robot_item:
 //                //进入Robot列表页面
 //                startActivity(new Intent(getActivity(), RobotsActivity.class));
