@@ -76,8 +76,10 @@ public class PublicChatRoomsActivity extends BaseActivity {
 		InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		pb = (ProgressBar) findViewById(R.id.progressBar);
 		listView = (RecyclerView) findViewById(R.id.recycleview);
+        listView.setHasFixedSize(true);
+//        listView.addItemDecoration(new GridMarginDecoration(6));
 		TextView title = (TextView) findViewById(R.id.tv_title);
-		title.setText(getResources().getString(R.string.chat_room));
+		title.setText(getResources().getString(R.string.live_room));
 		chatRoomList = new ArrayList<EMChatRoom>();
 		rooms = new ArrayList<EMChatRoom>();
 		
