@@ -277,8 +277,8 @@ public class PublicChatRoomsActivity extends BaseActivity {
 		public void onBindViewHolder(PhotoViewHolder holder, int position) {
 			EMChatRoom liveRoom = liveRoomList.get(position);
 			holder.anchor.setText(liveRoom.getName());
-            EaseUserUtils.setAppUserAvatar(context,liveRoom.getName(),holder.imageView);
-//			holder.audienceNum.setText(liveRoom.getAudienceNum() + "人");
+            EaseUserUtils.setLiveAvatar(context,liveRoom.getId(),holder.imageView);
+			holder.audienceNum.setText(liveRoom.getAffiliationsCount() + "人");
 //			Glide.with(context)
 //					.load(liveRoomList.get(position).getId())
 //					.placeholder(R.color.white)
