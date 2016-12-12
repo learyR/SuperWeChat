@@ -15,6 +15,7 @@
 package cn.ucai.superwechat.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -46,11 +47,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.data.TestDataRepository;
 
 public class PublicChatRoomsActivity extends BaseActivity {
 	private ProgressBar pb;
 	private RecyclerView listView;
-	private PhotoAdapter adapter;
+	private LiveAdapter adapter;
 	
 	private List<EMChatRoom> chatRoomList;
 	private boolean isLoading;
@@ -213,7 +215,7 @@ public class PublicChatRoomsActivity extends BaseActivity {
                             if(isFirstLoading){
                                 pb.setVisibility(View.INVISIBLE);
                                 isFirstLoading = false;
-                                adapter = new PhotoAdapter(PublicChatRoomsActivity.this,chatRoomList);
+                                adapter = new LiveAdapter(PublicChatRoomsActivity.this,chatRoomList);
                                 listView.setAdapter(adapter);
                                 rooms.addAll(chatRooms);
                             }else{
@@ -249,12 +251,12 @@ public class PublicChatRoomsActivity extends BaseActivity {
 	/**
 	 * 拷入的适配器
 	 */
-	static class PhotoAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
+	static class LiveAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
 
 		private final List<EMChatRoom> liveRoomList;
 		private final Context context;
 
-		public PhotoAdapter(Context context, List<EMChatRoom> liveRoomList){
+		public LiveAdapter(Context context, List<EMChatRoom> liveRoomList){
 			this.liveRoomList = liveRoomList;
 			this.context = context;
 		}
@@ -268,8 +270,16 @@ public class PublicChatRoomsActivity extends BaseActivity {
 				public void onClick(View v) {
 					final int position = holder.getAdapterPosition();
 					if (position == RecyclerView.NO_POSITION) return;
-//					context.startActivity(new Intent(context, LiveDetailsActivity.class)
-//							.putExtra("liveroom", liveRoomList.get(position)));
+//                    Intent intent = new Intent();
+//					EMChatRoom emChatRoom = liveRoomList.get(position);
+//					Log.e("leary", emChatRoom.getId() + "   " + emChatRoom.getName() + "   " + emChatRoom.getOwner());
+//					intent.putExtra("id",liveRoomList.get(position).getOwner());
+//                    intent.putExtra("name", liveRoomList.get(position).getId());
+//                    intent.setClass(context, LiveDetailsActivity.class);
+//                    context.startActivity(intent);
+
+                    context.startActivity(new Intent(context, LiveDetailsActivity.class)
+							.putExtra("liveroom", TestDataRepository.getLiveRoom(liveRoomList.get(position))));
 				}
 			});
 			return holder;

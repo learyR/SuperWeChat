@@ -5,10 +5,11 @@ android {
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
+
     lintOptions {
         abortOnError false
     }
@@ -24,4 +25,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.0.0-alpha1'
     compile 'com.android.support:preference-v7:23+'
+    compile files('libs/ulive-android-sdk-1.2.9.jar')
 }

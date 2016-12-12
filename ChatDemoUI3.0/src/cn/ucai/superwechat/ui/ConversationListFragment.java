@@ -1,6 +1,7 @@
 package cn.ucai.superwechat.ui;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
@@ -17,16 +18,19 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMConversation.EMConversationType;
 import com.hyphenate.chat.EMMessage;
-import cn.ucai.superwechat.Constant;
-import cn.ucai.superwechat.R;
-import cn.ucai.superwechat.db.InviteMessgeDao;
 import com.hyphenate.easeui.model.EaseAtMessageHelper;
 import com.hyphenate.easeui.ui.EaseConversationListFragment;
 import com.hyphenate.easeui.widget.EaseConversationList.EaseConversationListHelper;
 import com.hyphenate.util.NetUtils;
 
+import cn.ucai.superwechat.Constant;
+import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.db.InviteMessgeDao;
+
 public class ConversationListFragment extends EaseConversationListFragment{
 
+    private static final String ARG_ANCHOOR = "anchorId";
+    private static final String ARG_IS_NORMAL = "isNormalStyle";
     private TextView errorText;
 
     @Override
@@ -141,6 +145,14 @@ public class ConversationListFragment extends EaseConversationListFragment{
         // update unread count
         ((MainActivity) getActivity()).updateUnreadLabel();
         return true;
+    }
+    public static ConversationListFragment newInstance(String anchorId, boolean isNormalStyle){
+        ConversationListFragment fragment = new ConversationListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(ARG_ANCHOOR,anchorId);
+        bundle.putBoolean(ARG_IS_NORMAL,isNormalStyle);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
 }
