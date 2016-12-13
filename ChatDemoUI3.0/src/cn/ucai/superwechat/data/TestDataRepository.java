@@ -3,10 +3,6 @@ package cn.ucai.superwechat.data;
 
 import com.hyphenate.chat.EMChatRoom;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.bean.LiveRoom;
 
@@ -27,27 +23,27 @@ public class TestDataRepository {
   /**
    * 生成测试数据
    */
-  public static List<LiveRoom> getLiveRoomList() {
-    List<LiveRoom> roomList = new ArrayList<>();
-    for (int i = 1; i <= 6; i++) {
-      LiveRoom liveRoom = new LiveRoom();
-      liveRoom.setName("Test" + i);
-      liveRoom.setAudienceNum(new Random().nextInt(2000) + 1);
-      liveRoom.setId(liveRoomIds[i-1]);
-      liveRoom.setChatroomId(chatRoomIds[i-1]);
-      liveRoom.setCover(covers[i - 1]);
-      liveRoom.setAnchorId(anchorIds[i-1]);
-      roomList.add(liveRoom);
-    }
-    return roomList;
-  }
+//  public static List<LiveRoom> getLiveRoomList() {
+//    List<LiveRoom> roomList = new ArrayList<>();
+//    for (int i = 1; i <= 6; i++) {
+//      LiveRoom liveRoom = new LiveRoom();
+//      liveRoom.setName("Test" + i);
+//      liveRoom.setAudienceNum(new Random().nextInt(2000) + 1);
+//      liveRoom.setId(liveRoomIds[i-1]);
+//      liveRoom.setChatroomId(chatRoomIds[i-1]);
+//      liveRoom.setCover(covers[i - 1]);
+//      liveRoom.setAnchorId(anchorIds[i-1]);
+//      roomList.add(liveRoom);
+//    }
+//    return roomList;
+//  }
   public static LiveRoom getLiveRoom(EMChatRoom emChatRoom){
     LiveRoom liveRoom = new LiveRoom();
     liveRoom.setName(emChatRoom.getName());
     liveRoom.setAudienceNum(emChatRoom.getMemberCount());
     liveRoom.setId(emChatRoom.getId());
     liveRoom.setChatroomId(emChatRoom.getId());
-    liveRoom.setCover(covers[0]);
+    liveRoom.setCover(emChatRoom.getId());
     liveRoom.setAnchorId(emChatRoom.getOwner());
     return liveRoom;
   }

@@ -23,22 +23,21 @@ import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMChatRoom;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.controller.EaseUI;
-import com.hyphenate.easeui.widget.EaseAlertDialog;
+import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.ucloud.common.util.DeviceUtils;
 import com.ucloud.live.UEasyStreaming;
 import com.ucloud.live.UStreamingProfile;
 import com.ucloud.live.widget.UAspectFrameLayout;
 
-import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.bean.LiveRoom;
 import cn.ucai.superwechat.bean.LiveSettings;
-import cn.ucai.superwechat.data.TestDataRepository;
 import cn.ucai.superwechat.utils.Log2FileUtil;
 
 public class StartLiveActivity extends LiveBaseActivity
@@ -86,11 +85,11 @@ public class StartLiveActivity extends LiveBaseActivity
   @Override protected void onActivityCreate(@Nullable Bundle savedInstanceState) {
     setContentView(R.layout.activity_start_live);
     ButterKnife.bind(this);
-
-    liveId = TestDataRepository.getLiveRoomId(EMClient.getInstance().getCurrentUser());
-    chatroomId = TestDataRepository.getChatRoomId(EMClient.getInstance().getCurrentUser());
+    LiveRoom liveRoom = getIntent().getParcelableExtra("liveroom");
+    liveId = liveRoom.getId();
+    chatroomId = liveRoom.getChatroomId();
     anchorId = EMClient.getInstance().getCurrentUser();
-    usernameView.setText(anchorId);
+    usernameView.setText(SuperWeChatHelper.getInstance().getCurrentUsernName());
     initEnv();
   }
 
@@ -171,16 +170,16 @@ public class StartLiveActivity extends LiveBaseActivity
    */
   @OnClick(R.id.btn_start) void startLive() {
     //demo为了测试方便，只有指定的账号才能开启直播
-    if (liveId == null) {
-      String[] anchorIds = TestDataRepository.anchorIds;
-      StringBuilder sb = new StringBuilder();
-      for (int i = 0; i < anchorIds.length; i++) {
-        sb.append(anchorIds[i]);
-        if (i != (anchorIds.length - 1)) sb.append(",");
-      }
-      new EaseAlertDialog(this, "demo中只有" + sb.toString() + "这几个账户才能开启直播").show();
-      return;
-    }
+//    if (liveId == null) {
+//      String[] anchorIds = TestDataRepository.anchorIds;
+//      StringBuilder sb = new StringBuilder();
+//      for (int i = 0; i < anchorIds.length; i++) {
+//        sb.append(anchorIds[i]);
+//        if (i != (anchorIds.length - 1)) sb.append(",");
+//      }
+//      new EaseAlertDialog(this, "demo中只有" + sb.toString() + "这几个账户才能开启直播").show();
+//      return;
+//    }
 
     startContainer.setVisibility(View.INVISIBLE);
     //Utils.hideKeyboard(titleEdit);
@@ -229,12 +228,13 @@ public class StartLiveActivity extends LiveBaseActivity
   private void showConfirmCloseLayout() {
     //显示封面
     coverImage.setVisibility(View.VISIBLE);
-    List<LiveRoom> liveRoomList = TestDataRepository.getLiveRoomList();
-    for (LiveRoom liveRoom : liveRoomList) {
-      if (liveRoom.getId().equals(liveId)) {
-        coverImage.setImageResource(liveRoom.getCover());
-      }
-    }
+//    List<LiveRoom> liveRoomList = TestDataRepository.getLiveRoomList();
+//    for (LiveRoom liveRoom : liveRoomList) {
+//      if (liveRoom.getId().equals(liveId)) {
+//        coverImage.setImageResource(liveRoom.getCover());
+//      }
+//    }
+    EaseUserUtils.setLiveAvatar(this, liveId, coverImage);
     View view = liveEndLayout.inflate();
     Button closeConfirmBtn = (Button) view.findViewById(R.id.live_close_confirm);
     TextView usernameView = (TextView) view.findViewById(R.id.tv_username);

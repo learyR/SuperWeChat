@@ -25,6 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.bean.LiveRoom;
 
 public class LiveDetailsActivity extends LiveBaseActivity implements UVideoView.Callback {
 
@@ -46,18 +47,17 @@ public class LiveDetailsActivity extends LiveBaseActivity implements UVideoView.
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 
-//        LiveRoom liveRoom = getIntent().getParcelableExtra("liveroom");
-//        liveId = liveRoom.getId();
-//        chatroomId = liveRoom.getChatroomId();
-//        int coverRes = liveRoom.getCover();
-//        coverView.setImageResource(coverRes);
-//        anchorId = liveRoom.getAnchorId();
-        liveId = getIntent().getExtras().getString("id");
-//        int coverRes = Integer.parseInt(EaseUserUtils.getLiveAvatar(liveId));
-//        coverView.setImageResource(coverRes);
+        LiveRoom liveRoom = getIntent().getParcelableExtra("liveroom");
+        liveId = liveRoom.getId();
+        chatroomId = liveRoom.getChatroomId();
         EaseUserUtils.setLiveAvatar(this, liveId, coverView);
-        chatroomId = getIntent().getExtras().getString("chatroomId");
-        anchorId = getIntent().getExtras().getString("anchorid");
+        anchorId = liveRoom.getAnchorId();
+//        liveId = getIntent().getExtras().getString("id");
+////        int coverRes = Integer.parseInt(EaseUserUtils.getLiveAvatar(liveId));
+////        coverView.setImageResource(coverRes);
+//        EaseUserUtils.setLiveAvatar(this, liveId, coverView);
+//        chatroomId = getIntent().getExtras().getString("chatroomId");
+//        anchorId = getIntent().getExtras().getString("anchorid");
         usernameView.setText(anchorId);
 
         mVideoView = (UVideoView) findViewById(R.id.videoview);

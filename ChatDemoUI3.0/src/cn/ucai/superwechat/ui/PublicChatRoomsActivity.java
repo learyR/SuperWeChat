@@ -14,7 +14,6 @@
 
 package cn.ucai.superwechat.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,7 +47,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.superwechat.R;
-import cn.ucai.superwechat.utils.MFGT;
+import cn.ucai.superwechat.data.TestDataRepository;
 import cn.ucai.superwechat.widget.GridMarginDecoration;
 
 public class PublicChatRoomsActivity extends BaseActivity {
@@ -274,18 +273,19 @@ public class PublicChatRoomsActivity extends BaseActivity {
 					String user = EMClient.getInstance().getCurrentUser();
 
 					if (user.equals(liveRoomList.get(position).getOwner())) {
-						MFGT.gotoStartLiveActivity((Activity) context);
+						context.startActivity(new Intent(context, StartLiveActivity.class)
+								.putExtra("liveroom", TestDataRepository.getLiveRoom(liveRoomList.get(position))));
 					} else {
 //						MFGT.gotoLiveDetailsActivity((Activity) context);
-						EMChatRoom emChatRoom = liveRoomList.get(position);
-						Intent intent = new Intent(context,LiveDetailsActivity.class);
-						intent.putExtra("id", emChatRoom.getId());
-						intent.putExtra("anchorid", emChatRoom.getOwner());
-						intent.putExtra("chatroomId", emChatRoom.getId());
-						context.startActivity(intent);
+//						EMChatRoom emChatRoom = liveRoomList.get(position);
+//						Intent intent = new Intent(context,LiveDetailsActivity.class);
+//						intent.putExtra("id", emChatRoom.getId());
+//						intent.putExtra("anchorid", emChatRoom.getOwner());
+//						intent.putExtra("chatroomId", emChatRoom.getId());
+//						context.startActivity(intent);
 
-//						context.startActivity(new Intent(context, LiveDetailsActivity.class)
-//								.putExtra("liveroom", TestDataRepository.getLiveRoom(liveRoomList.get(position))));
+						context.startActivity(new Intent(context, LiveDetailsActivity.class)
+								.putExtra("liveroom", TestDataRepository.getLiveRoom(liveRoomList.get(position))));
 					}
 				}
 			});
