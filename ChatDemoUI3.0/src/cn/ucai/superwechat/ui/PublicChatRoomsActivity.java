@@ -14,6 +14,7 @@
 
 package cn.ucai.superwechat.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,7 +48,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.superwechat.R;
-import cn.ucai.superwechat.data.TestDataRepository;
+import cn.ucai.superwechat.utils.MFGT;
+import cn.ucai.superwechat.widget.GridMarginDecoration;
 
 public class PublicChatRoomsActivity extends BaseActivity {
 	private ProgressBar pb;
@@ -79,7 +81,7 @@ public class PublicChatRoomsActivity extends BaseActivity {
 		pb = (ProgressBar) findViewById(R.id.progressBar);
 		listView = (RecyclerView) findViewById(R.id.recycleview);
         listView.setHasFixedSize(true);
-//        listView.addItemDecoration(new GridMarginDecoration(6));
+        listView.addItemDecoration(new GridMarginDecoration(6));
 		TextView title = (TextView) findViewById(R.id.tv_title);
 		title.setText(getResources().getString(R.string.live_room));
 		chatRoomList = new ArrayList<EMChatRoom>();
@@ -162,7 +164,6 @@ public class PublicChatRoomsActivity extends BaseActivity {
             }
             
         });
-
 //        listView.setOnItemClickListener(new OnItemClickListener() {
 //
 //            @Override
@@ -270,16 +271,22 @@ public class PublicChatRoomsActivity extends BaseActivity {
 				public void onClick(View v) {
 					final int position = holder.getAdapterPosition();
 					if (position == RecyclerView.NO_POSITION) return;
-//                    Intent intent = new Intent();
-//					EMChatRoom emChatRoom = liveRoomList.get(position);
-//					Log.e("leary", emChatRoom.getId() + "   " + emChatRoom.getName() + "   " + emChatRoom.getOwner());
-//					intent.putExtra("id",liveRoomList.get(position).getOwner());
-//                    intent.putExtra("name", liveRoomList.get(position).getId());
-//                    intent.setClass(context, LiveDetailsActivity.class);
-//                    context.startActivity(intent);
+					String user = EMClient.getInstance().getCurrentUser();
 
-                    context.startActivity(new Intent(context, LiveDetailsActivity.class)
-							.putExtra("liveroom", TestDataRepository.getLiveRoom(liveRoomList.get(position))));
+					if (user.equals(liveRoomList.get(position).getOwner())) {
+						MFGT.gotoStartLiveActivity((Activity) context);
+					} else {
+//						MFGT.gotoLiveDetailsActivity((Activity) context);
+						EMChatRoom emChatRoom = liveRoomList.get(position);
+						Intent intent = new Intent(context,LiveDetailsActivity.class);
+						intent.putExtra("id", emChatRoom.getId());
+						intent.putExtra("anchorid", emChatRoom.getOwner());
+						intent.putExtra("chatroomId", emChatRoom.getId());
+						context.startActivity(intent);
+
+//						context.startActivity(new Intent(context, LiveDetailsActivity.class)
+//								.putExtra("liveroom", TestDataRepository.getLiveRoom(liveRoomList.get(position))));
+					}
 				}
 			});
 			return holder;
