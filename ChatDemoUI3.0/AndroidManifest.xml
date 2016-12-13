@@ -478,24 +478,19 @@
         <activity android:name=".ui.GuideActivity" />
         <activity android:name=".ui.PersonalProfileActivity" />
         <activity android:name=".ui.AddFriendActivity"></activity>
+       <!-- live begin-->
+
         <activity
             android:name=".ui.LiveDetailsActivity"
-            android:parentActivityName=".ui.MainActivity"
             android:screenOrientation="portrait"
             >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.MainActivity" />
         </activity>
 
-<!--        <activity
+        <activity
             android:name=".ui.StartLiveActivity"
-            android:parentActivityName=".ui.activity.MainActivity"
             android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.activity.MainActivity" />
-        </activity>-->
+        </activity>
+        <!-- live end-->
     </application>
 
 </manifest>
