@@ -150,6 +150,18 @@
   <string name="pref_default_video_publish_and_play_title">stream id</string>
 
   <string name="pref_default_log_cache_dir">/sdcard/ucloud/log</string>
+    <string name="pref_default_video_frame_rate">15</string>
+    <string name="pref_video_frame_rate">framerate</string>
+
+    <string name="pref_default_video_encoding_bit_rate">400</string>
+
+    <string name="pref_video_encoding_bit_rate">bitrate</string>
+
+
+    <string name="pref_default_video_size_width">640</string>
+    <string name="pref_video_size_width">video width</string>
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
