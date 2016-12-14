@@ -113,6 +113,7 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
       @Override public void run() {
         leftGiftView.setVisibility(View.VISIBLE);
         leftGiftView.setName(name);
+        leftGiftView.setAvatar(name);
         leftGiftView.setTranslationY(0);
         ViewAnimator.animate(leftGiftView)
             .alpha(0, 1)
@@ -270,7 +271,13 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
     @Override public void onCmdMessageReceived(List<EMMessage> messages) {
       EMMessage message = messages.get(messages.size() - 1);
       if (Constant.CMD_GIFT.equals(((EMCmdMessageBody) message.getBody()).action())) {
-        showLeftGiftVeiw(message.getFrom());
+        String s = message.getFrom();
+//        try {
+//          s = message.getStringAttribute(I.User.NICK);
+//        } catch (HyphenateException e) {
+//          e.printStackTrace();
+//        }
+        showLeftGiftVeiw(s);
       }
     }
 
@@ -451,8 +458,9 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
     EMCmdMessageBody cmdMessageBody = new EMCmdMessageBody(Constant.CMD_GIFT);
     message.addBody(cmdMessageBody);
     message.setChatType(EMMessage.ChatType.ChatRoom);
+//    message.setAttribute(I.User.NICK, EaseUserUtils.getCurrentAppUserInfo().getMUserNick());
     EMClient.getInstance().chatManager().sendMessage(message);
-    showLeftGiftVeiw(EaseUserUtils.getCurrentAppUserInfo().getMUserNick());
+    showLeftGiftVeiw(EaseUserUtils.getCurrentAppUserInfo().getMUserName());
   }
 
   @OnClick(R.id.chat_image) void onChatImageClick() {

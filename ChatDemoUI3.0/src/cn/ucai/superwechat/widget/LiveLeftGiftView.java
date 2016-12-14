@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.easeui.widget.EaseImageView;
 
 import butterknife.BindView;
@@ -48,11 +48,13 @@ public class LiveLeftGiftView extends RelativeLayout {
     }
 
     public void setName(String name){
-        this.name.setText(name);
+        String nick = EaseUserUtils.getAppUserInfo(name).getMUserNick();
+        this.name.setText(nick);
     }
 
-    public void setAvatar(String avatar){
-        Glide.with(getContext()).load(avatar).into(this.avatar);
+    public void setAvatar(String name){
+        EaseUserUtils.setAppUserAvatar(getContext(), name, this.avatar);
+//        Glide.with(getContext()).load(avatar).into(this.avatar);
     }
 
     public ImageView getGiftImageView(){
