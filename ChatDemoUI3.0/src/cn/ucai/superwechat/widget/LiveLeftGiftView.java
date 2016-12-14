@@ -27,6 +27,10 @@ public class LiveLeftGiftView extends RelativeLayout {
     @BindView(R.id.gift_image)
     ImageView giftImage;
 
+    int[] drawable = {R.drawable.hani_gift_1, R.drawable.hani_gift_2, R.drawable.hani_gift_3
+            , R.drawable.hani_gift_4, R.drawable.hani_gift_5, R.drawable.hani_gift_6
+            , R.drawable.hani_gift_7, R.drawable.hani_gift_8};
+
     public LiveLeftGiftView(Context context) {
         super(context);
         init(context, null);
@@ -56,7 +60,9 @@ public class LiveLeftGiftView extends RelativeLayout {
         EaseUserUtils.setAppUserAvatar(getContext(), name, this.avatar);
 //        Glide.with(getContext()).load(avatar).into(this.avatar);
     }
-
+    public void setGiftImageView(int id){
+        this.giftImage.setImageResource(drawable[id-1]);
+    }
     public ImageView getGiftImageView(){
         return giftImage;
     }

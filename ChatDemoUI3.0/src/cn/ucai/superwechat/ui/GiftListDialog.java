@@ -47,6 +47,7 @@ public class GiftListDialog extends DialogFragment {
     GridLayoutManager mLayoutManager;
     List<Gift> giftList = new ArrayList<>();
     GiftAdapter mAdapter;
+    View.OnClickListener mOnClickListener;
     int[] drawable = {R.drawable.hani_gift_1, R.drawable.hani_gift_2, R.drawable.hani_gift_3
             , R.drawable.hani_gift_4, R.drawable.hani_gift_5, R.drawable.hani_gift_6
             , R.drawable.hani_gift_7, R.drawable.hani_gift_8};
@@ -102,20 +103,31 @@ public class GiftListDialog extends DialogFragment {
     class GiftViewHolder extends RecyclerView.ViewHolder{
         ImageView ivGiftPic;
         TextView tvGiftPrice, tvGiftName;
+        View view;
         public GiftViewHolder(View itemView) {
             super(itemView);
             ivGiftPic = (ImageView) itemView.findViewById(R.id.ivGiftPic);
             tvGiftName = (TextView) itemView.findViewById(R.id.tvGiftName);
             tvGiftPrice = (TextView) itemView.findViewById(R.id.tvGiftPrice);
+            view = itemView.findViewById(R.id.layout_gift);
+            view.setOnClickListener(mOnClickListener);
         }
     }
     class GiftAdapter extends RecyclerView.Adapter<GiftViewHolder>{
         Context context;
         List<Gift> giftList;
-
         public GiftAdapter(Context context, List<Gift> giftList) {
             this.context = context;
             this.giftList = giftList;
+            mOnClickListener=new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int id= (int) v.getTag();
+                    if (dialogListener != null) {
+                        dialogListener.onMentionClick(id);
+                    }
+                }
+            };
         }
 
         @Override
@@ -132,6 +144,7 @@ public class GiftListDialog extends DialogFragment {
             holder.tvGiftPrice.setText(String.valueOf(gift.getGprice()));
             holder.tvGiftName.setText(gift.getGname());
 //            EaseUserUtils.setAppUserPathAvatar(context, gift.getGurl(), holder.ivGiftPic);
+            holder.itemView.setTag(gift.getId());
         }
 
         @Override
@@ -147,14 +160,14 @@ public class GiftListDialog extends DialogFragment {
             notifyDataSetChanged();
         }
     }
-    private RoomUserDetailsDialog.UserDetailsDialogListener dialogListener;
+    private GiftListDialog.GiftDialogListener dialogListener;
 
-    public void setUserDetailsDialogListener(RoomUserDetailsDialog.UserDetailsDialogListener dialogListener) {
+    public void setGiftDialogListener(GiftListDialog.GiftDialogListener dialogListener) {
         this.dialogListener = dialogListener;
     }
 
-    interface UserDetailsDialogListener {
-        void onMentionClick(String username);
+    interface GiftDialogListener {
+        void onMentionClick(int id);
     }
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
