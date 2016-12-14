@@ -30,6 +30,8 @@ import com.ucloud.live.UEasyStreaming;
 import com.ucloud.live.UStreamingProfile;
 import com.ucloud.live.widget.UAspectFrameLayout;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -83,6 +85,7 @@ public class StartLiveActivity extends LiveBaseActivity
 
     boolean isStarted;
     long startTime;
+    long aTime = 8 * 1000 * 60 * 60;
 
     private Handler handler = new Handler() {
         @Override
@@ -146,6 +149,7 @@ public class StartLiveActivity extends LiveBaseActivity
                 Toast.makeText(this, event.toString(), Toast.LENGTH_LONG).show();
                 break;
             case UEasyStreaming.State.START_RECORDING:
+                startTime = System.currentTimeMillis();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -203,7 +207,6 @@ public class StartLiveActivity extends LiveBaseActivity
 //      new EaseAlertDialog(this, "demo中只有" + sb.toString() + "这几个账户才能开启直播").show();
 //      return;
 //    }
-         startTime = System.currentTimeMillis();
         startContainer.setVisibility(View.INVISIBLE);
         //Utils.hideKeyboard(titleEdit);
         new Thread() {
@@ -260,7 +263,9 @@ public class StartLiveActivity extends LiveBaseActivity
 //      }
 //    }
         long endTime = System.currentTimeMillis();
-        long liveTime = endTime - startTime;
+        long liveTime = endTime - startTime-aTime;
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        String t = format.format(new Date(liveTime));
         imgBtClose.setEnabled(false);
         EaseUserUtils.setLiveAvatar(this, liveId, coverImage);
         View view = liveEndLayout.inflate();
@@ -269,7 +274,7 @@ public class StartLiveActivity extends LiveBaseActivity
         usernameView.setText(EaseUserUtils.getCurrentAppUserInfo().getMUserNick());
         EaseUserUtils.setCurrentAppUserAvatar(this, (ImageView) view.findViewById(R.id.iv_avatar));
         TextView finishTime = (TextView) view.findViewById(R.id.finish_time);
-        finishTime.setText(liveTime/1000/60/60+":"+liveTime/1000/60+":"+liveTime/1000);
+        finishTime.setText(t);
         closeConfirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

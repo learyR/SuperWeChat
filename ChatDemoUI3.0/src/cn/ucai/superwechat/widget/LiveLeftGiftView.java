@@ -48,8 +48,8 @@ public class LiveLeftGiftView extends RelativeLayout {
     }
 
     public void setName(String name){
-        String nick = EaseUserUtils.getAppUserInfo(name).getMUserNick();
-        this.name.setText(nick);
+//        String nick = EaseUserUtils.getAppUserInfo(name).getMUserNick();
+        this.name.setText(name);
     }
 
     public void setAvatar(String name){

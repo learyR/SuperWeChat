@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.easeui.widget.EaseImageView;
 
@@ -23,6 +24,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.bean.Result;
+import cn.ucai.superwechat.data.NetDao;
+import cn.ucai.superwechat.data.OkHttpUtils;
+import cn.ucai.superwechat.utils.ResultUtils;
 
 /**
  * Created by wei on 2016/7/25.
@@ -64,14 +69,32 @@ public class RoomUserDetailsDialog extends DialogFragment {
         }
         if (username != null) {
             usernameView.setText(username);
-            if (username.equals("leary")) {
-                EaseUserUtils.setCurrentAppUserAvatar(getActivity(), ivAvatar);
-            } else {
-                EaseUserUtils.setAppUserAvatar(getContext(), username, ivAvatar);
-            }
         }
-
+        EaseUserUtils.setAppUserAvatar(getContext(), username, ivAvatar);
+        showUserNick();
         mentionBtn.setText("@TA");
+    }
+
+    private void showUserNick() {
+        NetDao.syncUserInfo(getContext(), username, new OkHttpUtils.OnCompleteListener<String>() {
+            @Override
+            public void onSuccess(String result) {
+                if (result != null) {
+                    Result r = ResultUtils.getResultFromJson(result, User.class);
+                    if (r != null && r.isRetMsg()) {
+                        User u = (User) r.getRetData();
+                        if (u != null) {
+                            usernameView.setText(u.getMUserNick());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 
     @OnClick(R.id.btn_message)
