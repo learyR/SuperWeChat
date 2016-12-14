@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.github.florent37.viewanimator.AnimationBuilder;
 import com.github.florent37.viewanimator.AnimationListener;
 import com.github.florent37.viewanimator.ViewAnimator;
+import com.hyphenate.easeui.utils.EaseUserUtils;
+import com.hyphenate.easeui.widget.EaseImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -92,7 +94,10 @@ public class BarrageLayout extends LinearLayout {
         View barrageView = LayoutInflater.from(getContext()).inflate(R.layout.layout_barrage_show, null);
         TextView nameView = (TextView) barrageView.findViewById(R.id.name);
         TextView contentView = (TextView) barrageView.findViewById(R.id.content);
-        nameView.setText(username);
+        EaseImageView avatar= (EaseImageView) barrageView.findViewById(R.id.avatar);
+        EaseUserUtils.setAppUserAvatar(getContext(), username, avatar);
+        nameView.setText(EaseUserUtils.getAppUserInfo(username).getMUserNick());
+//        nameView.setText(username);
         contentView.setText(msgContent);
         return barrageView;
     }
