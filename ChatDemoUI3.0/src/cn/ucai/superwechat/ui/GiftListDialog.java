@@ -141,7 +141,7 @@ public class GiftListDialog extends DialogFragment {
         public void onBindViewHolder(GiftViewHolder holder, int position) {
             Gift gift = giftList.get(position);
             holder.ivGiftPic.setImageResource(drawable[position]);
-            holder.tvGiftPrice.setText(String.valueOf(gift.getGprice()));
+            holder.tvGiftPrice.setText(String.valueOf(gift.getGprice())+"￥");
             holder.tvGiftName.setText(gift.getGname());
 //            EaseUserUtils.setAppUserPathAvatar(context, gift.getGurl(), holder.ivGiftPic);
             holder.itemView.setTag(gift.getId());
