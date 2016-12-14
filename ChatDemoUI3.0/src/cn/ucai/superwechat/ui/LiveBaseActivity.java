@@ -328,6 +328,12 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
             //    return;
             //}
             String clickUsername = message.getFrom();
+//            showUserDetailsDialog(clickUsername);
+            try {
+              clickUsername=message.getStringAttribute(I.User.NICK);
+            } catch (HyphenateException e) {
+              e.printStackTrace();
+            }
             showUserDetailsDialog(clickUsername);
           }
 
@@ -498,7 +504,9 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
     @Override public void onBindViewHolder(AvatarViewHolder holder, final int position) {
       holder.itemView.setOnClickListener(new View.OnClickListener() {
         @Override public void onClick(View v) {
-          showUserDetailsDialog(namelist.get(position));
+          String nick = EaseUserUtils.getAppUserInfo(namelist.get(position)).getMUserNick();
+          showUserDetailsDialog(nick);
+//          showUserDetailsDialog(namelist.get(position));
         }
       });
       //暂时使用测试数据
