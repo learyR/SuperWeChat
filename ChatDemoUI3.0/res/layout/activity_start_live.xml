@@ -31,10 +31,11 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         >
-      <ImageView
-          android:id="@+id/iv_avatar"
+      <com.hyphenate.easeui.widget.EaseImageView
           android:layout_width="30dp"
+          android:id="@+id/iv_avatar"
           android:layout_height="30dp"
+          app:ease_shape_type="round"
           android:src="@drawable/ease_default_avatar"
           />
 

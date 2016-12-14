@@ -446,7 +446,7 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
     message.addBody(cmdMessageBody);
     message.setChatType(EMMessage.ChatType.ChatRoom);
     EMClient.getInstance().chatManager().sendMessage(message);
-    showLeftGiftVeiw(EMClient.getInstance().getCurrentUser());
+    showLeftGiftVeiw(EaseUserUtils.getCurrentAppUserInfo().getMUserNick());
   }
 
   @OnClick(R.id.chat_image) void onChatImageClick() {

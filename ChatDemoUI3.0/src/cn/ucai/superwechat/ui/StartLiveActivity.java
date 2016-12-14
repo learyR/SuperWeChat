@@ -24,6 +24,7 @@ import com.hyphenate.chat.EMChatRoom;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.utils.EaseUserUtils;
+import com.hyphenate.easeui.widget.EaseImageView;
 import com.ucloud.common.util.DeviceUtils;
 import com.ucloud.live.UEasyStreaming;
 import com.ucloud.live.UStreamingProfile;
@@ -73,12 +74,15 @@ public class StartLiveActivity extends LiveBaseActivity
     public static final int COUNTDOWN_END_INDEX = 1;
     protected boolean isShutDownCountdown = false;
     @BindView(R.id.iv_avatar)
-    ImageView ivAvatar;
+    EaseImageView ivAvatar;
+    @BindView(R.id.img_bt_close)
+    ImageButton imgBtClose;
     private LiveSettings mSettings;
     private UStreamingProfile mStreamingProfile;
     UEasyStreaming.UEncodingType encodingType;
 
     boolean isStarted;
+    long startTime;
 
     private Handler handler = new Handler() {
         @Override
@@ -101,7 +105,7 @@ public class StartLiveActivity extends LiveBaseActivity
         chatroomId = liveRoom.getChatroomId();
         anchorId = liveRoom.getName();
         usernameView.setText(EaseUserUtils.getCurrentAppUserInfo().getMUserNick());
-        EaseUserUtils.setCurrentAppUserAvatar(this,ivAvatar);
+        EaseUserUtils.setCurrentAppUserAvatar(this, ivAvatar);
         initEnv();
     }
 
@@ -199,7 +203,7 @@ public class StartLiveActivity extends LiveBaseActivity
 //      new EaseAlertDialog(this, "demo中只有" + sb.toString() + "这几个账户才能开启直播").show();
 //      return;
 //    }
-
+         startTime = System.currentTimeMillis();
         startContainer.setVisibility(View.INVISIBLE);
         //Utils.hideKeyboard(titleEdit);
         new Thread() {
@@ -255,11 +259,17 @@ public class StartLiveActivity extends LiveBaseActivity
 //        coverImage.setImageResource(liveRoom.getCover());
 //      }
 //    }
+        long endTime = System.currentTimeMillis();
+        long liveTime = endTime - startTime;
+        imgBtClose.setEnabled(false);
         EaseUserUtils.setLiveAvatar(this, liveId, coverImage);
         View view = liveEndLayout.inflate();
         Button closeConfirmBtn = (Button) view.findViewById(R.id.live_close_confirm);
         TextView usernameView = (TextView) view.findViewById(R.id.tv_username);
-        usernameView.setText(EMClient.getInstance().getCurrentUser());
+        usernameView.setText(EaseUserUtils.getCurrentAppUserInfo().getMUserNick());
+        EaseUserUtils.setCurrentAppUserAvatar(this, (ImageView) view.findViewById(R.id.iv_avatar));
+        TextView finishTime = (TextView) view.findViewById(R.id.finish_time);
+        finishTime.setText(liveTime/1000/60/60+":"+liveTime/1000/60+":"+liveTime/1000);
         closeConfirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -398,5 +408,9 @@ public class StartLiveActivity extends LiveBaseActivity
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.img_bt_close)
+    public void onClick() {
     }
 }
