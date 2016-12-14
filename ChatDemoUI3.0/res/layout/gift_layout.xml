@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginTop="2dp"
+    >
+
+    <ImageView
+        android:id="@+id/ivGiftPic"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/default_avatar"
+        />
+
+    <TextView
+        android:id="@+id/tvGiftPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="123$"
+        android:gravity="center"
+        android:textColor="#f60"
+        android:textSize="12sp"
+        />
+    <TextView
+        android:id="@+id/tvGiftName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="giftName"
+        android:gravity="center"
+        android:textColor="#f60"
+        android:textSize="15sp"
+        />
+</LinearLayout>

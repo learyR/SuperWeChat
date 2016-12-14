@@ -118,34 +118,34 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
         leftGiftView.setName(nick);
         leftGiftView.setTranslationY(0);
         ViewAnimator.animate(leftGiftView)
-            .alpha(0, 1)
-            .translationX(-leftGiftView.getWidth(), 0)
-            .duration(600)
-            .thenAnimate(leftGiftView)
-            .alpha(1, 0)
-            .translationY(-1.5f * leftGiftView.getHeight())
-            .duration(800)
-            .onStop(new AnimationListener.Stop() {
-              @Override public void onStop() {
-                EMMessage pollName = null;
-                try {
-                  pollName = toShowList.remove(0);
-                } catch (Exception e) {
+                .alpha(0, 1)
+                .translationX(-leftGiftView.getWidth(), 0)
+                .duration(600)
+                .thenAnimate(leftGiftView)
+                .alpha(1, 0)
+                .translationY(-1.5f * leftGiftView.getHeight())
+                .duration(800)
+                .onStop(new AnimationListener.Stop() {
+                  @Override public void onStop() {
+                    EMMessage pollName = null;
+                    try {
+                      pollName = toShowList.remove(0);
+                    } catch (Exception e) {
 
-                }
-                if (pollName != null) {
-                  showGift1Derect(pollName);
-                } else {
-                  isGiftShowing = false;
-                }
-              }
-            })
-            .startDelay(1000)
-            .start();
+                    }
+                    if (pollName != null) {
+                      showGift1Derect(pollName);
+                    } else {
+                      isGiftShowing = false;
+                    }
+                  }
+                })
+                .startDelay(1000)
+                .start();
         ViewAnimator.animate(leftGiftView.getGiftImageView())
-            .translationX(-leftGiftView.getGiftImageView().getX(), 0)
-            .duration(1100)
-            .start();
+                .translationX(-leftGiftView.getGiftImageView().getX(), 0)
+                .duration(1100)
+                .start();
       }
     });
   }
@@ -161,34 +161,34 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
         leftGiftView2.setName(nick);
         leftGiftView2.setTranslationY(0);
         ViewAnimator.animate(leftGiftView2)
-            .alpha(0, 1)
-            .translationX(-leftGiftView2.getWidth(), 0)
-            .duration(600)
-            .thenAnimate(leftGiftView2)
-            .alpha(1, 0)
-            .translationY(-1.5f * leftGiftView2.getHeight())
-            .duration(800)
-            .onStop(new AnimationListener.Stop() {
-              @Override public void onStop() {
-                EMMessage pollName = null;
-                try {
-                  pollName = toShowList.remove(0);
-                } catch (Exception e) {
+                .alpha(0, 1)
+                .translationX(-leftGiftView2.getWidth(), 0)
+                .duration(600)
+                .thenAnimate(leftGiftView2)
+                .alpha(1, 0)
+                .translationY(-1.5f * leftGiftView2.getHeight())
+                .duration(800)
+                .onStop(new AnimationListener.Stop() {
+                  @Override public void onStop() {
+                    EMMessage pollName = null;
+                    try {
+                      pollName = toShowList.remove(0);
+                    } catch (Exception e) {
 
-                }
-                if (pollName != null) {
-                  showGift2Derect(pollName);
-                } else {
-                  isGift2Showing = false;
-                }
-              }
-            })
-            .startDelay(1000)
-            .start();
+                    }
+                    if (pollName != null) {
+                      showGift2Derect(pollName);
+                    } else {
+                      isGift2Showing = false;
+                    }
+                  }
+                })
+                .startDelay(1000)
+                .start();
         ViewAnimator.animate(leftGiftView2.getGiftImageView())
-            .translationX(-leftGiftView2.getGiftImageView().getX(), 0)
-            .duration(1100)
-            .start();
+                .translationX(-leftGiftView2.getGiftImageView().getX(), 0)
+                .duration(1100)
+                .start();
       }
     });
   }
@@ -245,7 +245,7 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
         String username = null;
         // 群组消息
         if (message.getChatType() == EMMessage.ChatType.GroupChat
-            || message.getChatType() == EMMessage.ChatType.ChatRoom) {
+                || message.getChatType() == EMMessage.ChatType.ChatRoom) {
           username = message.getTo();
         } else {
           // 单聊消息
@@ -255,7 +255,7 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
         if (username.equals(chatroomId)) {
           if (message.getBooleanAttribute(Constant.EXTRA_IS_BARRAGE_MSG, false)) {
             barrageLayout.addBarrage(((EMTextMessageBody) message.getBody()).getMessage(),
-                message.getFrom());
+                    message.getFrom());
           }
           messageView.refreshSelectLast();
         } else {
@@ -358,11 +358,11 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
   protected void updateUnreadMsgView(){
     if(isMessageListInited) {
       for (EMConversation conversation : EMClient.getInstance()
-          .chatManager()
-          .getAllConversations()
-          .values()) {
+              .chatManager()
+              .getAllConversations()
+              .values()) {
         if (conversation.getType() == EMConversation.EMConversationType.Chat
-            && conversation.getUnreadMsgCount() > 0) {
+                && conversation.getUnreadMsgCount() > 0) {
           newMsgNotifyImage.setVisibility(View.VISIBLE);
           return;
         }
@@ -370,19 +370,23 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
       newMsgNotifyImage.setVisibility(View.INVISIBLE);
     }
   }
-
+  private void showGiftDetailsDialog(){
+    final GiftListDialog dialog =
+            GiftListDialog.newInstance();
+    dialog.show(getSupportFragmentManager(), "GiftListDialog");
+  }
 
   private void showUserDetailsDialog(String username) {
     final RoomUserDetailsDialog dialog =
-        RoomUserDetailsDialog.newInstance(username);
+            RoomUserDetailsDialog.newInstance(username);
     dialog.setUserDetailsDialogListener(
-        new RoomUserDetailsDialog.UserDetailsDialogListener() {
-          @Override public void onMentionClick(String username) {
-            dialog.dismiss();
-            messageView.getInputView().setText("@" + username + " ");
-            showInputView();
-          }
-        });
+            new RoomUserDetailsDialog.UserDetailsDialogListener() {
+              @Override public void onMentionClick(String username) {
+                dialog.dismiss();
+                messageView.getInputView().setText("@" + username + " ");
+                showInputView();
+              }
+            });
     dialog.show(getSupportFragmentManager(), "RoomUserDetailsDialog");
   }
 
@@ -407,7 +411,7 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
       @Override public void run() {
         try {
           chatroom =
-              EMClient.getInstance().chatroomManager().fetchChatRoomFromServer(chatroomId, true);
+                  EMClient.getInstance().chatroomManager().fetchChatRoomFromServer(chatroomId, true);
           memberList.addAll(chatroom.getMemberList());
         } catch (HyphenateException e) {
           e.printStackTrace();
@@ -451,6 +455,9 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
   }
 
   @OnClick(R.id.present_image) void onPresentImageClick() {
+    showGiftDetailsDialog();
+  }
+  private void showGift(){
     EMMessage message = EMMessage.createSendMessage(EMMessage.Type.CMD);
     message.setReceipt(chatroomId);
     EMCmdMessageBody cmdMessageBody = new EMCmdMessageBody(Constant.CMD_GIFT);
@@ -464,8 +471,8 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
   @OnClick(R.id.chat_image) void onChatImageClick() {
     ConversationListFragment fragment = ConversationListFragment.newInstance(anchorId, false);
     getSupportFragmentManager().beginTransaction()
-        .replace(R.id.message_container, fragment)
-        .commit();
+            .replace(R.id.message_container, fragment)
+            .commit();
   }
 
   @OnClick(R.id.screenshot_image) void onScreenshotImageClick(){
@@ -504,7 +511,7 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
 
     @Override public AvatarViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
       return new AvatarViewHolder(
-          LayoutInflater.from(context).inflate(R.layout.avatar_list_item, parent, false));
+              LayoutInflater.from(context).inflate(R.layout.avatar_list_item, parent, false));
     }
 
     @Override public void onBindViewHolder(AvatarViewHolder holder, final int position) {
