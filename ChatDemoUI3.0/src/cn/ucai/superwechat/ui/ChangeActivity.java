@@ -1,8 +1,10 @@
 package cn.ucai.superwechat.ui;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hyphenate.chat.EMClient;
@@ -29,6 +31,11 @@ public class ChangeActivity extends BaseActivity {
     TextView tvChangeTip;
     @BindView(R.id.tv_change_balance)
     TextView tvChangeBalance;
+    @BindView(R.id.target_layout)
+    LinearLayout targetLayout;
+
+    private View loadingView;
+    int change;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,9 @@ public class ChangeActivity extends BaseActivity {
     }
 
     private void initData() {
+        loadingView = LayoutInflater.from(this).inflate(R.layout.rp_loading, targetLayout, false);
+        targetLayout.addView(loadingView);
+        setChangeText(change);
         NetDao.loadChange(this, EMClient.getInstance().getCurrentUser(), new OkHttpUtils.OnCompleteListener<String>() {
             @Override
             public void onSuccess(String s) {
@@ -47,11 +57,14 @@ public class ChangeActivity extends BaseActivity {
                     Result result = ResultUtils.getResultFromJson(s, Wallet.class);
                     if (result != null && result.isRetMsg()) {
                         Wallet wallet = (Wallet) result.getRetData();
-                        tvChangeBalance.setText("￥ "+String.valueOf(Float.valueOf(wallet.getBalance())));
-                    } else {
-                        tvChangeBalance.setText("￥ 0.00");
+                        if (wallet != null) {
+                            setChangeText(wallet.getBalance());
+                        } else {
+                            setChangeText(0);
+                        }
                     }
                 }
+                loadingView.setVisibility(View.GONE);
             }
 
             @Override
@@ -61,11 +74,16 @@ public class ChangeActivity extends BaseActivity {
         });
     }
 
+    private void setChangeText(int change) {
+        tvChangeBalance.setText("￥ "+Double.valueOf(change));
+    }
+
     private void initView() {
         leftImage.setImageResource(R.drawable.rp_back_arrow_yellow);
         title.setText("钱包");
         subtitle.setText("云账号钱包服务");
         tvChangeTip.setText("我的零钱");
+        tvChangeBalance.setText("￥ 0.00");
     }
 
     @OnClick({R.id.left_layout, R.id.tv_change_recharge, R.id.tv_change_withdraw})
