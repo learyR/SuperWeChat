@@ -117,7 +117,7 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
         leftGiftView.setVisibility(View.VISIBLE);
         leftGiftView.setAvatar(name);
         leftGiftView.setName(nick);
-        leftGiftView.setGiftImageView(id);
+        leftGiftView.setGift(id);
         leftGiftView.setTranslationY(0);
         ViewAnimator.animate(leftGiftView)
                 .alpha(0, 1)
@@ -155,14 +155,14 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
   private void showGift2Derect(final  EMMessage message) {
     final String name = message.getFrom();
     final String nick = message.getStringAttribute(I.User.NICK, name);
-    final int id = message.getIntAttribute("gift", 1);
+    final int id = message.getIntAttribute("gift", 0);
     isGift2Showing = true;
     runOnUiThread(new Runnable() {
       @Override public void run() {
         leftGiftView2.setVisibility(View.VISIBLE);
         leftGiftView2.setAvatar(name);
         leftGiftView2.setName(nick);
-        leftGiftView2.setGiftImageView(id);
+        leftGiftView2.setGift(id);
         leftGiftView2.setTranslationY(0);
         ViewAnimator.animate(leftGiftView2)
                 .alpha(0, 1)

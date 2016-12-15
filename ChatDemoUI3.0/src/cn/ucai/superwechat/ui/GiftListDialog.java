@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.SuperWeChatApplication;
 import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.bean.Gift;
 import cn.ucai.superwechat.bean.Result;
@@ -50,9 +53,9 @@ public class GiftListDialog extends DialogFragment {
     List<Gift> giftList = new ArrayList<>();
     GiftAdapter mAdapter;
     View.OnClickListener mOnClickListener;
-    int[] drawable = {R.drawable.hani_gift_1, R.drawable.hani_gift_2, R.drawable.hani_gift_3
-            , R.drawable.hani_gift_4, R.drawable.hani_gift_5, R.drawable.hani_gift_6
-            , R.drawable.hani_gift_7, R.drawable.hani_gift_8};
+//    int[] drawable = {R.drawable.hani_gift_1, R.drawable.hani_gift_2, R.drawable.hani_gift_3
+//            , R.drawable.hani_gift_4, R.drawable.hani_gift_5, R.drawable.hani_gift_6
+//            , R.drawable.hani_gift_7, R.drawable.hani_gift_8};
     public static GiftListDialog newInstance() {
         GiftListDialog dialog = new GiftListDialog();
         return dialog;
@@ -153,7 +156,7 @@ public class GiftListDialog extends DialogFragment {
         @Override
         public void onBindViewHolder(GiftViewHolder holder, int position) {
             Gift gift = giftList.get(position);
-            holder.ivGiftPic.setImageResource(drawable[position]);
+            holder.ivGiftPic.setImageResource(getGiftImage(gift.getId()));
             holder.tvGiftPrice.setText(String.valueOf(gift.getGprice())+"￥");
             holder.tvGiftName.setText(gift.getGname());
 //            EaseUserUtils.setAppUserPathAvatar(context, gift.getGurl(), holder.ivGiftPic);
@@ -169,6 +172,12 @@ public class GiftListDialog extends DialogFragment {
             if (giftList != null) {
                 giftList.clear();
             }
+            Collections.sort(list, new Comparator<Gift>() {
+                @Override
+                public int compare(Gift lhs, Gift rhs) {
+                    return lhs.getGprice() - rhs.getGprice();
+                }
+            });
             giftList.addAll(list);
             notifyDataSetChanged();
         }
@@ -206,5 +215,12 @@ public class GiftListDialog extends DialogFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    private int getGiftImage(int id) {
+        Context context = SuperWeChatApplication.getInstance().getApplicationContext();
+        String name = "hani_gift_" + id;
+        int resId = context.getResources().getIdentifier(name, "drawable", context.getPackageName());
+        return resId;
     }
 }

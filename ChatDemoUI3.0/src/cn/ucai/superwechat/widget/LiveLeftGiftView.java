@@ -14,6 +14,9 @@ import com.hyphenate.easeui.widget.EaseImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.SuperWeChatApplication;
+import cn.ucai.superwechat.SuperWeChatHelper;
+import cn.ucai.superwechat.bean.Gift;
 
 /**
  * Created by wei on 2016/6/7.
@@ -30,6 +33,8 @@ public class LiveLeftGiftView extends RelativeLayout {
     int[] drawable = {R.drawable.hani_gift_1, R.drawable.hani_gift_2, R.drawable.hani_gift_3
             , R.drawable.hani_gift_4, R.drawable.hani_gift_5, R.drawable.hani_gift_6
             , R.drawable.hani_gift_7, R.drawable.hani_gift_8};
+    @BindView(R.id.tvGiftName)
+    TextView tvGiftName;
 
     public LiveLeftGiftView(Context context) {
         super(context);
@@ -51,19 +56,32 @@ public class LiveLeftGiftView extends RelativeLayout {
         ButterKnife.bind(this);
     }
 
-    public void setName(String name){
+    public void setName(String name) {
 //        String nick = EaseUserUtils.getAppUserInfo(name).getMUserNick();
         this.name.setText(name);
     }
 
-    public void setAvatar(String name){
+    public void setAvatar(String name) {
         EaseUserUtils.setAppUserAvatar(getContext(), name, this.avatar);
 //        Glide.with(getContext()).load(avatar).into(this.avatar);
     }
-    public void setGiftImageView(int id){
-        this.giftImage.setImageResource(drawable[id-1]);
+
+    public void setGift(int id) {
+        Gift gift = SuperWeChatHelper.getInstance().getAppGiftList().get(id);
+        if (gift != null && id != 0) {
+            tvGiftName.setText("送了一个" + gift.getGname());
+            this.giftImage.setImageResource(getGiftImage(id));
+        }
     }
-    public ImageView getGiftImageView(){
+
+    public ImageView getGiftImageView() {
         return giftImage;
+    }
+
+    private int getGiftImage(int id) {
+        Context context = SuperWeChatApplication.getInstance().getApplicationContext();
+        String name = "hani_gift_" + id;
+        int resId = context.getResources().getIdentifier(name, "drawable", context.getPackageName());
+        return resId;
     }
 }
