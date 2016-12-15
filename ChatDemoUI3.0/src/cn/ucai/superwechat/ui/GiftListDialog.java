@@ -20,11 +20,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.bean.Gift;
 import cn.ucai.superwechat.bean.Result;
 import cn.ucai.superwechat.data.NetDao;
@@ -73,25 +75,36 @@ public class GiftListDialog extends DialogFragment {
     }
 
     private void initData() {
-        NetDao.downGifts(getContext(), new OkHttpUtils.OnCompleteListener<String>() {
-            @Override
-            public void onSuccess(String result) {
-                if (result != null) {
-                    Result giftList = ResultUtils.getListResultFromJson(result, Gift.class);
-                    if (giftList!= null && giftList.isRetMsg()) {
-                        List<Gift> list= (List<Gift>) giftList.getRetData();
-                        if (list != null && list.size() > 0) {
-                            mAdapter.initData(list);
+        Map<Integer, Gift> appGiftList = SuperWeChatHelper.getInstance().getAppGiftList();
+        if (appGiftList != null && appGiftList.size() > 0) {
+            List<Gift> giftList = new ArrayList<>();
+            for (Gift gift : appGiftList.values()) {
+//                Log.e("leary", gift.toString());
+                giftList.add(gift);
+            }
+            mAdapter.initData(giftList);
+        } else {
+            NetDao.downGifts(getContext(), new OkHttpUtils.OnCompleteListener<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    if (result != null) {
+                        Result giftList = ResultUtils.getListResultFromJson(result, Gift.class);
+                        if (giftList!= null && giftList.isRetMsg()) {
+                            List<Gift> list= (List<Gift>) giftList.getRetData();
+                            if (list != null && list.size() > 0) {
+                                mAdapter.initData(list);
+                                SuperWeChatHelper.getInstance().updateAppGiftList(list);
+                            }
                         }
                     }
                 }
-            }
 
-            @Override
-            public void onError(String error) {
+                @Override
+                public void onError(String error) {
 
-            }
-        });
+                }
+            });
+        }
 
     }
 
