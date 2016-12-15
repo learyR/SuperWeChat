@@ -61,6 +61,10 @@ import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.SuperWeChatHelper;
 import cn.ucai.superwechat.adapter.MainTabAdpter;
+import cn.ucai.superwechat.bean.Result;
+import cn.ucai.superwechat.bean.Wallet;
+import cn.ucai.superwechat.data.NetDao;
+import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.db.InviteMessgeDao;
 import cn.ucai.superwechat.db.UserDao;
 import cn.ucai.superwechat.dialog.TitleMenu.ActionItem;
@@ -69,6 +73,7 @@ import cn.ucai.superwechat.runtimepermissions.PermissionsManager;
 import cn.ucai.superwechat.runtimepermissions.PermissionsResultAction;
 import cn.ucai.superwechat.utils.L;
 import cn.ucai.superwechat.utils.MFGT;
+import cn.ucai.superwechat.utils.ResultUtils;
 import cn.ucai.superwechat.widget.DMTabHost;
 import cn.ucai.superwechat.widget.MFViewPager;
 
@@ -184,6 +189,28 @@ public class MainActivity extends BaseActivity implements DMTabHost.OnCheckedCha
             startActivity(new Intent(this, LoginActivity.class));
             return;
         }
+        syncWallet();
+    }
+
+    private void syncWallet() {
+        NetDao.loadChange(this, EMClient.getInstance().getCurrentUser(), new OkHttpUtils.OnCompleteListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                if (s != null) {
+                    Result result = ResultUtils.getResultFromJson(s, Wallet.class);
+                    if (result != null && result.isRetMsg()) {
+                        Wallet wallet = (Wallet) result.getRetData();
+                        if (wallet != null) {
+                            SuperWeChatHelper.getInstance().setCurrentUserChange(wallet.getBalance().toString());
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 
     private void savePower() {

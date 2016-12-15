@@ -39,7 +39,14 @@ import butterknife.OnClick;
 import cn.ucai.superwechat.Constant;
 import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.R;
+import cn.ucai.superwechat.SuperWeChatHelper;
+import cn.ucai.superwechat.bean.Gift;
+import cn.ucai.superwechat.bean.Result;
+import cn.ucai.superwechat.bean.Wallet;
+import cn.ucai.superwechat.data.NetDao;
+import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.data.TestAvatarRepository;
+import cn.ucai.superwechat.utils.ResultUtils;
 import cn.ucai.superwechat.utils.Utils;
 import cn.ucai.superwechat.widget.BarrageLayout;
 import cn.ucai.superwechat.widget.LiveLeftGiftView;
@@ -381,7 +388,7 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
       @Override
       public void onMentionClick(int id) {
         dialog.dismiss();
-        showGift(id);
+        sendGift(id);
 //        Log.e("leary", id + "");
       }
     });
@@ -469,7 +476,41 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
   @OnClick(R.id.present_image) void onPresentImageClick() {
     showGiftDetailsDialog();
   }
-  private void showGift(int id){
+  private void sendGift(final int id){
+    final int change = Integer.parseInt(SuperWeChatHelper.getInstance().getCurrentUsernChange());
+    Gift gift = SuperWeChatHelper.getInstance().getAppGiftList().get(id);
+    if (change > 0 && change > gift.getGprice()) {
+      NetDao.sendGift(this, EMClient.getInstance().getCurrentUser(), anchorId, id, new OkHttpUtils.OnCompleteListener<String>() {
+        @Override
+        public void onSuccess(String s) {
+          if (s != null) {
+            Result result = ResultUtils.getResultFromJson(s, Wallet.class);
+            if (result != null && result.isRetMsg()) {
+              Wallet wallet = (Wallet) result.getRetData();
+              if (wallet != null) {
+                showGift(id);
+                SuperWeChatHelper.getInstance().setCurrentUserChange(wallet.getBalance().toString());
+              } else {
+
+              }
+            }
+          }
+
+        }
+
+        @Override
+        public void onError(String error) {
+
+        }
+      });
+
+    } else {
+      //余额不足
+    }
+
+  }
+
+  private void showGift(int id) {
     EMMessage message = EMMessage.createSendMessage(EMMessage.Type.CMD);
     message.setReceipt(chatroomId);
     EMCmdMessageBody cmdMessageBody = new EMCmdMessageBody(Constant.CMD_GIFT);

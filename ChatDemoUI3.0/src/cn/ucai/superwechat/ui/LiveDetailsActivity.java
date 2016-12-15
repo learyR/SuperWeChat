@@ -15,6 +15,7 @@ import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMChatRoom;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.controller.EaseUI;
+import com.hyphenate.easeui.domain.User;
 import com.hyphenate.easeui.utils.EaseUserUtils;
 import com.hyphenate.easeui.widget.EaseImageView;
 import com.ucloud.common.logger.L;
@@ -27,6 +28,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.bean.LiveRoom;
+import cn.ucai.superwechat.bean.Result;
+import cn.ucai.superwechat.data.NetDao;
+import cn.ucai.superwechat.data.OkHttpUtils;
+import cn.ucai.superwechat.utils.ResultUtils;
 
 public class LiveDetailsActivity extends LiveBaseActivity implements UVideoView.Callback {
 
@@ -66,7 +71,7 @@ public class LiveDetailsActivity extends LiveBaseActivity implements UVideoView.
 //        EaseUserUtils.setLiveAvatar(this, liveId, coverView);
 //        chatroomId = getIntent().getExtras().getString("chatroomId");
 //        anchorId = getIntent().getExtras().getString("anchorid");
-        usernameView.setText(EaseUserUtils.getAppUserInfo(anchorId).getMUserNick());
+        giveAnchorName(anchorId);
         EaseUserUtils.setAppUserAvatar(this, anchorId, ivAvatar);
         mVideoView = (UVideoView) findViewById(R.id.videoview);
 
@@ -79,6 +84,28 @@ public class LiveDetailsActivity extends LiveBaseActivity implements UVideoView.
         mVideoView.setVideoPath(rtmpPlayStreamUrl + liveId);
 //      mVideoView.setVideoPath(rtmpPlayStreamUrl);
 
+    }
+
+    private void giveAnchorName(String anchorId) {
+        NetDao.syncUserInfo(this, anchorId, new OkHttpUtils.OnCompleteListener<String>() {
+            @Override
+            public void onSuccess(String result) {
+                if (result != null) {
+                    Result r = ResultUtils.getResultFromJson(result, User.class);
+                    if (r != null && r.isRetMsg()) {
+                        User u = (User) r.getRetData();
+                        if (u != null) {
+                            usernameView.setText(u.getMUserNick());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 
 

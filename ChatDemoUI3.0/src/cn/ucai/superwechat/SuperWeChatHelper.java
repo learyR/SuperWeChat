@@ -1439,4 +1439,11 @@ public class SuperWeChatHelper {
         }
         appGiftList = giftList;
     }
+    public void setCurrentUserChange(String change){
+        demoModel.setCurrentUserChange(change);
+    }
+
+    public String getCurrentUsernChange(){
+            return demoModel.getCurrentUsernChange();
+    }
 }
