@@ -1,6 +1,8 @@
 package cn.ucai.superwechat.ui;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.florent37.viewanimator.AnimationListener;
 import com.github.florent37.viewanimator.ViewAnimator;
@@ -46,6 +49,7 @@ import cn.ucai.superwechat.bean.Wallet;
 import cn.ucai.superwechat.data.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
 import cn.ucai.superwechat.data.TestAvatarRepository;
+import cn.ucai.superwechat.utils.MFGT;
 import cn.ucai.superwechat.utils.ResultUtils;
 import cn.ucai.superwechat.utils.Utils;
 import cn.ucai.superwechat.widget.BarrageLayout;
@@ -491,7 +495,7 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
                 showGift(id);
                 SuperWeChatHelper.getInstance().setCurrentUserChange(wallet.getBalance().toString());
               } else {
-
+                Toast.makeText(LiveBaseActivity.this, "发送礼物失败，获取余额失败", Toast.LENGTH_SHORT).show();
               }
             }
           }
@@ -506,6 +510,17 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
 
     } else {
       //余额不足
+      AlertDialog.Builder builder = new AlertDialog.Builder(this);
+      builder.setTitle("提示");
+      builder.setMessage("余额不足，去充值吧");
+      builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+          MFGT.gotoChangeActivity(LiveBaseActivity.this);
+        }
+      });
+      builder.setNegativeButton("取消", null);
+      builder.create().show();
     }
 
   }
