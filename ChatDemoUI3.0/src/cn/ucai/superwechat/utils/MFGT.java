@@ -18,6 +18,7 @@ import cn.ucai.superwechat.ui.NewFriendsMsgActivity;
 import cn.ucai.superwechat.ui.NewGroupActivity;
 import cn.ucai.superwechat.ui.PersonalProfileActivity;
 import cn.ucai.superwechat.ui.PublicGroupsActivity;
+import cn.ucai.superwechat.ui.RechargeActivity;
 import cn.ucai.superwechat.ui.RegisterActivity;
 import cn.ucai.superwechat.ui.SettingsActivity;
 import cn.ucai.superwechat.ui.StartLiveActivity;
@@ -123,5 +124,8 @@ public class MFGT {
     }
     public static void gotoChangeActivity(Activity context) {
         startActivity(context, ChangeActivity.class);
+    }
+    public static void gotoRechargeActivity(Activity context) {
+        startActivity(context, RechargeActivity.class);
     }
 }

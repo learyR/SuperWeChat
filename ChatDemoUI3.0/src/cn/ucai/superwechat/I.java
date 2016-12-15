@@ -15,7 +15,7 @@ public interface I {
 		String ANCHORID							   =			"anchor";
 		String GID							  	   =			"giftId";
 		String GNUM							       =			"giftNum";
-
+		String RMB								   =            "rmb";
 	}
 	public static interface Contact {
 		String TABLE_NAME 							= 		"t_superwechat_contact";

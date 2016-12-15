@@ -235,4 +235,12 @@ public class NetDao {
                 .targetClass(String.class)
                 .execute(listener);
     }
+    public static void rechargeMoney(Context context, String username,String rmb,OkHttpUtils.OnCompleteListener<String>listener) {
+        OkHttpUtils<String> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_RECHARGE)
+                .addParam(I.Live.USERNAME, username)
+                .addParam(I.Live.RMB,rmb)
+                .targetClass(String.class)
+                .execute(listener);
+    }
 }

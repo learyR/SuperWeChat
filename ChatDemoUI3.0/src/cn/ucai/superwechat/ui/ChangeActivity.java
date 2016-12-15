@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hyphenate.chat.EMClient;
 
@@ -18,6 +19,7 @@ import cn.ucai.superwechat.bean.Result;
 import cn.ucai.superwechat.bean.Wallet;
 import cn.ucai.superwechat.data.NetDao;
 import cn.ucai.superwechat.data.OkHttpUtils;
+import cn.ucai.superwechat.utils.MFGT;
 import cn.ucai.superwechat.utils.ResultUtils;
 
 public class ChangeActivity extends BaseActivity {
@@ -51,30 +53,32 @@ public class ChangeActivity extends BaseActivity {
         loadingView = LayoutInflater.from(this).inflate(R.layout.rp_loading, targetLayout, false);
         targetLayout.addView(loadingView);
         change = Integer.parseInt(SuperWeChatHelper.getInstance().getCurrentUsernChange());
-        setChangeText(this.change);
+        setChangeText(change);
         NetDao.loadChange(this, EMClient.getInstance().getCurrentUser(), new OkHttpUtils.OnCompleteListener<String>() {
-            @Override
-            public void onSuccess(String s) {
-                if (s != null) {
-                    Result result = ResultUtils.getResultFromJson(s, Wallet.class);
-                    if (result != null && result.isRetMsg()) {
-                        Wallet wallet = (Wallet) result.getRetData();
-                        if (wallet != null) {
-                            setChangeText(wallet.getBalance());
-                            SuperWeChatHelper.getInstance().setCurrentUserChange(wallet.getBalance().toString());
-                        } else {
-                            setChangeText(0);
+                @Override
+                public void onSuccess(String s) {
+                    if (s != null) {
+                        Result result = ResultUtils.getResultFromJson(s, Wallet.class);
+                        if (result != null && result.isRetMsg()) {
+                            Wallet wallet = (Wallet) result.getRetData();
+                            if (wallet != null) {
+                                setChangeText(wallet.getBalance());
+                                SuperWeChatHelper.getInstance().setCurrentUserChange(wallet.getBalance().toString());
+                            } else {
+                                setChangeText(0);
+                            }
                         }
                     }
+                    loadingView.setVisibility(View.GONE);
                 }
-                loadingView.setVisibility(View.GONE);
-            }
 
-            @Override
-            public void onError(String error) {
+                @Override
+                public void onError(String error) {
+                    loadingView.setVisibility(View.GONE);
+                    Toast.makeText(ChangeActivity.this, "获取钱包失败", Toast.LENGTH_SHORT).show();
+                }
+            });
 
-            }
-        });
     }
 
     private void setChangeText(int change) {
@@ -96,11 +100,18 @@ public class ChangeActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.tv_change_recharge:
-
+                MFGT.gotoRechargeActivity(this);
                 break;
             case R.id.tv_change_withdraw:
 
                 break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+       int change = Integer.parseInt(SuperWeChatHelper.getInstance().getCurrentUsernChange());
+        setChangeText(change);
     }
 }

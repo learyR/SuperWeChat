@@ -482,16 +482,17 @@
 
         <activity
             android:name=".ui.LiveDetailsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.StartLiveActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <!-- live end -->
-        <activity android:name=".ui.ChangeActivity"
+        <activity
+            android:name=".ui.ChangeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+        <activity android:name=".ui.RechargeActivity"></activity>
     </application>
 
 </manifest>
