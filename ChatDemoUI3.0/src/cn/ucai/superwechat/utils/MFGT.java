@@ -8,6 +8,7 @@ import cn.ucai.superwechat.I;
 import cn.ucai.superwechat.R;
 import cn.ucai.superwechat.ui.AddContactActivity;
 import cn.ucai.superwechat.ui.AddFriendActivity;
+import cn.ucai.superwechat.ui.ChangeActivity;
 import cn.ucai.superwechat.ui.ChatActivity;
 import cn.ucai.superwechat.ui.GroupsActivity;
 import cn.ucai.superwechat.ui.LiveDetailsActivity;
@@ -119,5 +120,8 @@ public class MFGT {
     }
     public static void gotoLiveDetailsActivity(Activity context) {
         startActivity(context, LiveDetailsActivity.class);
+    }
+    public static void gotoChangeActivity(Activity context) {
+        startActivity(context, ChangeActivity.class);
     }
 }

@@ -16,6 +16,7 @@ import com.hyphenate.chat.EMChatRoom;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.hyphenate.easeui.utils.EaseUserUtils;
+import com.hyphenate.easeui.widget.EaseImageView;
 import com.ucloud.common.logger.L;
 import com.ucloud.player.widget.v2.UVideoView;
 
@@ -30,13 +31,20 @@ import cn.ucai.superwechat.bean.LiveRoom;
 public class LiveDetailsActivity extends LiveBaseActivity implements UVideoView.Callback {
 
     String rtmpPlayStreamUrl = "rtmp://vlive3.rtmp.cdn.ucloud.com.cn/ucloud/";
+    @BindView(R.id.iv_avatar)
+    EaseImageView ivAvatar;
     private UVideoView mVideoView;
 
-    @BindView(R.id.loading_layout) RelativeLayout loadingLayout;
-    @BindView(R.id.progress_bar) ProgressBar progressBar;
-    @BindView(R.id.loading_text) TextView loadingText;
-    @BindView(R.id.cover_image) ImageView coverView;
-    @BindView(R.id.tv_username) TextView usernameView;
+    @BindView(R.id.loading_layout)
+    RelativeLayout loadingLayout;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
+    @BindView(R.id.loading_text)
+    TextView loadingText;
+    @BindView(R.id.cover_image)
+    ImageView coverView;
+    @BindView(R.id.tv_username)
+    TextView usernameView;
 
     @Override
     protected void onActivityCreate(@Nullable Bundle savedInstanceState) {
@@ -58,8 +66,8 @@ public class LiveDetailsActivity extends LiveBaseActivity implements UVideoView.
 //        EaseUserUtils.setLiveAvatar(this, liveId, coverView);
 //        chatroomId = getIntent().getExtras().getString("chatroomId");
 //        anchorId = getIntent().getExtras().getString("anchorid");
-        usernameView.setText(anchorId);
-
+        usernameView.setText(EaseUserUtils.getAppUserInfo(anchorId).getMUserNick());
+        EaseUserUtils.setAppUserAvatar(this, anchorId, ivAvatar);
         mVideoView = (UVideoView) findViewById(R.id.videoview);
 
         mVideoView.setPlayType(UVideoView.PlayType.LIVE);
@@ -155,7 +163,7 @@ public class LiveDetailsActivity extends LiveBaseActivity implements UVideoView.
             case UVideoView.Callback.EVENT_PLAY_STOP:
                 break;
             case UVideoView.Callback.EVENT_PLAY_COMPLETION:
-                Toast.makeText(this, "直播已结束",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "直播已结束", Toast.LENGTH_LONG).show();
                 finish();
                 break;
             case UVideoView.Callback.EVENT_PLAY_DESTORY:
@@ -174,8 +182,15 @@ public class LiveDetailsActivity extends LiveBaseActivity implements UVideoView.
         }
     }
 
-    @OnClick(R.id.img_bt_close) void close(){
+    @OnClick(R.id.img_bt_close)
+    void close() {
         finish();
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

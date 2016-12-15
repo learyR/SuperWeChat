@@ -110,7 +110,7 @@ public abstract class LiveBaseActivity extends MyLiveBaseActivity {
   private void showGift1Derect(final  EMMessage message) {
     final String name = message.getFrom();
     final String nick = message.getStringAttribute(I.User.NICK, name);
-    final int id = message.getIntAttribute("gift", 1);
+    final int id = message.getIntAttribute("gift", 0);
     isGiftShowing = true;
     runOnUiThread(new Runnable() {
       @Override public void run() {

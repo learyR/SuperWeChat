@@ -477,20 +477,21 @@
 
         <activity android:name=".ui.GuideActivity" />
         <activity android:name=".ui.PersonalProfileActivity" />
-        <activity android:name=".ui.AddFriendActivity"></activity>
-       <!-- live begin-->
+        <activity android:name=".ui.AddFriendActivity" />
+        <!-- live begin -->
 
         <activity
             android:name=".ui.LiveDetailsActivity"
-            android:screenOrientation="portrait"
-            >
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.StartLiveActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"></activity>
+        <!-- live end -->
+        <activity android:name=".ui.ChangeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustResize|stateHidden">
         </activity>
-        <!-- live end-->
     </application>
 
 </manifest>
